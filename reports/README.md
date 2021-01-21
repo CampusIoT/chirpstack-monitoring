@@ -3,8 +3,12 @@
 ## Prerequises
 ### Linux
 ```bash
+sudo apt install mail postfix
 sudo apt install jq curl
 ```
+
+[See Postfix install](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-postfix-on-ubuntu-20-04)
+
 ### MacOS
 ```bash
 brew install jq curl

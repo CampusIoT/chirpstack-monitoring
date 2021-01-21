@@ -4,7 +4,7 @@
 # Written by CampusIoT Dev Team, 2016-2021
 
 # ------------------------------------------------
-# Get getaways
+# Get the detail of a getaway
 # ------------------------------------------------
 
 # Parameters

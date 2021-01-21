@@ -3,6 +3,10 @@
 # Copyright (C) CampusIoT,  - All Rights Reserved
 # Written by CampusIoT Dev Team, 2016-2021
 
+# ------------------------------------------------
+# Get the JWT token
+# ------------------------------------------------
+
 # Parameters
 if [[ $# -ne 2 ]] ; then
     echo "Usage: $0 USERNAME PASSWORD"

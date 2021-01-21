@@ -1,3 +1,4 @@
 {
+    "chirpstack_api_url": "https://lns.campusiot.imag.fr",
     "report_email_to": "XX.XX@univ-grenoble-alpes.fr YY.YY@univ-grenoble-alpes.fr"
 }

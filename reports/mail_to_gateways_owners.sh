@@ -4,7 +4,7 @@
 # Written by CampusIoT Dev Team, 2016-2021
 
 # ------------------------------------------------
-# Parse getaways
+# Parse getaways and send reports to owners by email
 # ------------------------------------------------
 
 rm .mails.csv

@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Copyright (C) CampusIoT,  - All Rights Reserved
+# Written by CampusIoT Dev Team, 2016-2021
+
+# ------------------------------------------------
+# Generate the reports
+# ------------------------------------------------
+
 USERNAME=admin
 PASSWORD=XXXXXXXXXXXXXXXX
 

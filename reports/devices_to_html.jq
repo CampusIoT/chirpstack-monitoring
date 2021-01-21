@@ -1,0 +1,1 @@
+.result | sort_by(.lastSeenAt, .devEUI) | reverse [] | ("<li><a href='" + @uri "https://lns.campusiot.imag.fr/#/organizations/\(.organizationID)/applications/\(.applicationID)/devices/\(.devEUI)" + "'>" + .devEUI + "</a>: " + .name + " (profile " + .deviceProfileName + " ,org " + .organizationID + ") - " + .lastSeenAt + "</li>"  )

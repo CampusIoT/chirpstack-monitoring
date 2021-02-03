@@ -1,0 +1,23 @@
+# Copyright (C) UGA GINP  - All Rights Reserved
+# Written by Didier DONSEZ, 2016-2021
+
+version: "2"
+
+services:
+
+  grafana:
+    image: grafana/grafana
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: 4g342644E753rx7Hp29N
+      GF_INSTALL_PLUGINS: grafana-clock-panel,grafana-simple-json-datasource,grafana-worldmap-panel,grafana-piechart-panel,mtanda-heatmap-epoch-panel,briangann-gauge-panel,jdbranham-diagram-panel,snuids-radar-panel,fatcloud-windrose-panel,snuids-trafficlights-panel,larona-epict-panel,grafana-polystat-panel,natel-plotly-panel,bessler-pictureit-panel,pierosavi-imageit-panel,pr0ps-trackmap-panel,gretamosa-topology-panel,alexandra-trackmap-panel,citilogics-geoloop-panel
+      VIRTUAL_HOST: wildcount.iot.imag.fr
+      VIRTUAL_PORT: 3000
+      VIRTUAL_PATH: grafana
+    volumes:
+       - ./configuration/grafana/provisioning:/etc/grafana/provisioning/
+       - ./configuration/grafana/logo.svg:/usr/share/grafana/public/img/grafana_icon.svg
+    ports:
+       - 3000:3000
+    restart: unless-stopped
+    network_mode: bridge
+

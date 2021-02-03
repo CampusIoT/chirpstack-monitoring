@@ -1,0 +1,24 @@
+# Copyright (C) UGA GINP  - All Rights Reserved
+# Written by Didier DONSEZ, 2016-2021
+
+version: "2"
+
+services:
+
+  influxdb:
+    image: influxdb
+    environment:
+      INFLUXDB_ADMIN_USER: admin
+      INFLUXDB_ADMIN_PASSWORD: E7534gx7Hp29N342644r57NV
+      INFLUXDB_USER: user
+      INFLUXDB_USER_PASSWORD: E7534gx7Hp29N342644r57NV
+    volumes:
+      # If the Docker image finds any files with the extensions .sh or .iql inside of the /docker-entrypoint-initdb.d folder, it will execute them. The order they are executed in is determined by the shell. This is usually alphabetical order.
+       - ./configuration/influxdb/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
+       - ./data/influxdb:/var/lib/influxdb
+    #ports:
+    #  - 8086:8086 #8086 HTTP API port
+    #  - 8083:8083 #8083 Administrator interface port, if it is enabled
+    restart: unless-stopped
+    network_mode: bridge
+

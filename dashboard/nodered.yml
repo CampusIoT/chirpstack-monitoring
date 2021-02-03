@@ -1,0 +1,29 @@
+# Copyright (C) UGA GINP  - All Rights Reserved
+# Written by Didier DONSEZ, 2016-2021
+
+version: "2"
+
+services:
+
+  nodered:
+    build:
+      context: ./docker/nodered
+    image: iot-admin/nodered:latest
+    environment:
+      NODE_OPTIONS: --max_old_space_size=512
+      FLOWS: flow.json
+      VIRTUAL_HOST: admin-n.iot.imag.fr
+      VIRTUAL_PORT: 1880
+      VIRTUAL_PATH: nodered
+    volumes:
+       - ./configuration/nodered/:/data/:rw
+       - ./data/log/:/log/:rw
+      # - ./configuration/nodered/flow.json:/data/flow.json:rw
+      # - ./configuration/nodered/settings.TMPL.js:/data/settings.TMPL.js:ro
+      # - ./configuration/nodered/set_password.sh:/data/set_password.sh:ro
+      # - ./configuration/nodered/node-red-static:/data/node-red-static:ro
+    ports:
+       - 1880:1880
+    restart: unless-stopped
+    network_mode: bridge
+

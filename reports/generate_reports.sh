@@ -7,8 +7,8 @@
 # Generate the reports
 # ------------------------------------------------
 
-USERNAME=admin
-PASSWORD=XXXXXXXXXXXXXXXX
+USERNAME=ChirpstackMonitoring
+PASSWORD=qX2bK6oN2iC1cQ5c
 
 JWT=$(./get_jwt.sh $USERNAME $PASSWORD)
 

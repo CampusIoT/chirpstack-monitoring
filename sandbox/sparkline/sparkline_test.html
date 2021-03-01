@@ -33,55 +33,16 @@
         to a sparkline with data in the tag */
         $('.inlinebar').sparkline('html', {type: 'bar', barColor: 'red'} );
         $.sparkline_display_visible();
-    });
-    </script>
-</head>
-<body>
 
-
-
-<div  style="padding: 10px; background: #f5da55">
-    <h4 style="color: #000; ">Hello world!</h4>
-</div>
-
-
-
-<p id="capture">
-Inline Sparkline: <span  class="inlinesparkline">1,4,4,7,5,9,10</span>.
-</p>
-<p>
-Sparkline with dynamic data: <span class="dynamicsparkline">Loading..</span>
-</p>
-<p>
-Bar chart with dynamic data: <span class="dynamicbar">Loading..</span>
-</p>
-<p>
-Bar chart with inline data: <span class="inlinebar">1,3,4,5,3,5</span>
-</p>
-
-
-</body>
-
-
-<script type="text/javascript">
-    //* Step2 : Générer image du rapport HTML en SVG
-    // Test avec le rapport : jQuery_Sparklines_Simple_Example.html
-
-    //http://html2canvas.hertzen.com/getting-started/
-
-    //4 paragraphs différents : faisons 1 image pour chacun.
-
-    html2canvas(document.querySelector("#capture")).then(canvas => {
-        document.body.appendChild(canvas)
-    });
-    
-    html2canvas(document.querySelector('#capture')).then(function(canvas) {
-
-        console.log(canvas);
-        saveAs(canvas.toDataURL(), 'file-name.png');
+        /* To download as an image 
+        AS TO BE IN THE CURRENT FUNCTION (sparline generating function)*/
+        html2canvas(document.querySelector("#capture")).then(canvas => {
+        //document.body.appendChild(canvas)
+        saveAs(canvas.toDataURL(), 'screenshot.png');
+        });
     });
 
-
+    /* Function to download without having to click somewhere */
     function saveAs(uri, filename) {
 
         var link = document.createElement('a');
@@ -106,7 +67,31 @@ Bar chart with inline data: <span class="inlinebar">1,3,4,5,3,5</span>
 
         }
     };
+    </script>
+</head>
+<body id="capture">
 
-</script>
 
+
+<div  style="padding: 10px; background: #f5da55">
+    <h4 style="color: #000; ">Hello world!</h4>
+</div>
+
+
+
+<p>
+Inline Sparkline: <span  class="inlinesparkline">1,4,4,7,5,9,10</span>.
+</p>
+<p>
+Sparkline with dynamic data: <span class="dynamicsparkline">Loading..</span>
+</p>
+<p>
+Bar chart with dynamic data: <span class="dynamicbar">Loading..</span>
+</p>
+<p>
+Bar chart with inline data: <span class="inlinebar">1,3,4,5,3,5</span>
+</p>
+
+
+</body>
 </html>

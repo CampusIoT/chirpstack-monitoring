@@ -77,6 +77,9 @@ docker-compose start
 
 # destroy all the containers of the composition
 docker-compose down
+
+# access CLI of InfluxDB container
+docker-compose exec influxdb influx
 ```
 
 ## TODO

@@ -7,8 +7,8 @@
 # Generate the reports
 # ------------------------------------------------
 
-USERNAME=admin
-PASSWORD=XXXXXXXXXXXXXXXX
+USERNAME=$(jq --raw-output ".username" .credentials.json)
+PASSWORD=$(jq --raw-output ".password" .credentials.json)
 
 JWT=$(./get_jwt.sh $USERNAME $PASSWORD)
 

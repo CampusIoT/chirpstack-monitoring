@@ -7,5 +7,6 @@ rm -f *.token.json
 rm -f .organizations.*
 rm -f .gateways.*
 rm -f .gateway-.*
+rm -f .gateway-*
 rm -f .devices.*
 rm -f .applications.*

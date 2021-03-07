@@ -1,21 +1,6 @@
 #!/bin/bash
 
-#test="2021-03-02T13:45:35.488962Z"
-#t1=$(echo $test | tr "T" "\n")
-#i=0
-#t2=()
-#for x in $t1
-#do
-#    t2[i]=$x
-#    i=$((i+1))
-#done
-#echo ${t2[0]}
-#if [[ ${t2[0]} = $TODAY ]]
-#then
-#    echo "good"
-#else
-#    echo "bad"
-#fi
+TODAY="2021-03-02"
 
 ids=$(jq --raw-output ".result[] | .id" test_json1.json)
 id=()
@@ -23,27 +8,32 @@ i=0
 for ID in $ids
 do
     id[$i]=$ID
-    #echo $id
     i=$((i+1))
 done
 dates=$(jq --raw-output ".result[] | .lastSeenAt" test_json1.json)
 date=()
-j=0
-for date in $dates
-do
-    date[$j]=$date
-    j=$((j+1))
-done
+date=($dates)
 
 state=()
-full_date=$(echo $date[$i] | tr "T" "\n")
-x=0
+full_date==()
 d=()
-for arg in $full_date
+for (( i=0; i<${#date[@]}; i++ ))
 do
-    d[$x]=$arg
-    x=$((x+1))
+    if [[ ${date[$i]} == "null" ]]
+    then
+        full_date[$i]=${date[$i]}
+        d[$i]=${full_date[$i]}
+    else
+        full_date[$i]=$(echo $date[$i] | tr "T" "\n")
+        for arg in $full_date[$i]
+        do
+            d[$i]=$arg
+            break
+        done
+    fi
 done
+
+
 for (( i=0; i<${#d[@]}; i++ ))
 do
     if [[ "${d[$i]}" == "$TODAY" ]]
@@ -53,6 +43,7 @@ do
         state[$i]="passive"
     fi
 done
+
 
 
 ids_2=$(jq --raw-output ".result[] | .id" test_json2.json)
@@ -79,7 +70,7 @@ do
     do
         if [[ "$id[$i]" == "$id_2[$j]" ]]
         then
-            if [[ "$state[$i]" != "$state_2[$j]" ]]
+            if [[ "${state[$i]}" != "${state_2[$j]}" ]]
             then
                 echo ${id[$i]}+"CHANGEMENT"
             fi

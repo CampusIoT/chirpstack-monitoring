@@ -2,6 +2,7 @@
 
 TODAY="2021-03-02"
 
+#On stock les ids des gateways d'aujourd'hui
 ids=$(jq --raw-output ".result[] | .id" test_json1.json)
 id=()
 i=0
@@ -10,10 +11,11 @@ do
     id[$i]=$ID
     i=$((i+1))
 done
+
+#On stock les dates de dernière activité des gateways d'aujourd'hui
 dates=$(jq --raw-output ".result[] | .lastSeenAt" test_json1.json)
 date=()
 date=($dates)
-
 state=()
 full_date==()
 d=()
@@ -34,6 +36,8 @@ do
 done
 
 
+#On stock les states des gateways d'aujourd'hui dans un tableau en regardant la date
+#de dernière activité des gateways
 for (( i=0; i<${#d[@]}; i++ ))
 do
     if [[ "${d[$i]}" == "$TODAY" ]]
@@ -44,8 +48,7 @@ do
     fi
 done
 
-
-
+#On stock les ids des gateways d'hier
 ids_2=$(jq --raw-output ".result[] | .id" test_json2.json)
 id_2=()
 i=0
@@ -55,6 +58,7 @@ do
     i=$((i+1))
 done
 
+#On stock les states des gateways d'hier
 full_state=$(jq --raw-output ".result[] | .lastState" test_json2.json)
 states_2=()
 j=0
@@ -64,6 +68,8 @@ do
     j=$((j+1))
 done
 
+
+#On compare les states des gateways d'aujourd'hui et hier
 for (( i=0; i<${#id[@]}; i++ ))
 do
     for (( j=0; j<${#id_2[@]}; j++ ))
@@ -77,6 +83,32 @@ do
         fi
     done
 done
+
+#On met à jour les states des gateways pour le prochain jour
+echo "{
+  \"totalCount\": \"${#id[@]}\",
+  \"result\": [" > test.txt
+
+for (( i=0; i<$((${#id[@]}-1)); i++ ))
+do
+    echo "    {
+      \"id\": \"${id[$i]}\",
+      \"lastState\": \"${state[$i]}\"
+    }," >> test.txt
+done
+
+echo "    {
+      \"id\": \"${id[$((${#id[@]}-1))]}\",
+      \"lastState\": \"${state[$((${#id[@]}-1))]}\"
+    }
+  ]
+}" >> test.txt
+
+
+
+
+
+
 
 #jq --raw-output -f gateways_to_html.jq test_json1.json | grep "0000024b0805031a"
 

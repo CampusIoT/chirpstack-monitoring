@@ -1,120 +1,101 @@
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/0000024b0805031a'>0000024b0805031a</a>: KER_107_POLYTECH - (org 6) - 2021-03-02T13:20:05.349596Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-02T13:20:04.421429Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030724'>7276ff0039030724</a>: KER_FEMTO_030724_P124 - (org 6) - 2021-03-02T13:20:04.355108Z</li>
-<li><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030871'>7276ff0039030871</a>: KER_FEMTO_030871_NP - (org 6) - 2021-03-02T13:19:53.431742Z</li>
+{
+  "totalCount": "24",
+  "result": [
+    {
+      "id": "0000024b0805031a",
+      "lastState": "active"
+    },
+    {
+      "id": "7276ff0039030716",
+      "lastState": "active"
+    },
+    {
+      "id": "7276ff0039030724",
+      "lastState": "active"
+    },
+    {
+      "id": "7276ff0039030871",
+      "lastState": "active"
+    },
+    {
+      "id": "0080e1ffff0153f1",
+      "lastState": "passive"
+    },
+    {
+      "id": "0080e1ffff011234",
+      "lastState": "passive"
+    },
+    {
+      "id": "0080e1ffff0153d7",
+      "lastState": "passive"
+    },
+    {
+      "id": "080027ffff052e4a",
+      "lastState": "passive"
+    },
+    {
+      "id": "0080e1ffff014fe1",
+      "lastState": "passive"
+    },
+    {
+      "id": "0080e1ffff014feb",
+      "lastState": "passive"
+    },
+    {
+      "id": "0080e1ffff01523c",
+      "lastState": "passive"
+    },
+    {
+      "id": "0080e1ffff01523e",
+      "lastState": "passive"
+    },
+    {
+      "id": "0080e1ffff015240",
+      "lastState": "passive"
+    },
+    {
+      "id": "0080e1ffff015241",
+      "lastState": "passive"
+    },
+    {
+      "id": "0080e1ffff015242",
+      "lastState": "passive"
+    },
+    {
+      "id": "0080e1ffff015244",
+      "lastState": "passive"
+    },
+    {
+      "id": "0080e1ffff015252",
+      "lastState": "passive"
+    },
+    {
+      "id": "0080e1ffff015253",
+      "lastState": "passive"
+    },
+    {
+      "id": "0080e1ffff015256",
+      "lastState": "passive"
+    },
+    {
+      "id": "0080e1ffff015257",
+      "lastState": "passive"
+    },
+    {
+      "id": "0080e1ffff01525e",
+      "lastState": "passive"
+    },
+    {
+      "id": "0080e1ffff0153cc",
+      "lastState": "passive"
+    },
+    {
+      "id": "0080e1ffff015b18",
+      "lastState": "passive"
+    },
+    {
+      "id": "0080e1ffff015abf",
+      "lastState": "passive"
+    }
+  ]
+}

@@ -4,20 +4,20 @@
 # Written by CampusIoT Dev Team, 2016-2021
 
 # ------------------------------------------------
-# Get getaways
+# Get the stats of a get gateway
 # ------------------------------------------------
 
 # Parameters
-if [[ $# -ne 1 ]] ; then
-    echo "Usage: $0 JWT"
+if [[ $# -ne 3 ]] ; then
+    echo "Usage: $0 JWT GWID TODAY"
     exit 1
 fi
 
 TOKEN="$1"
+GWID="$2"
+TODAY="$3"
 
 AUTH="Grpc-Metadata-Authorization: Bearer $TOKEN"
-#sudo npm install -g jwt-cli
-#jwt $TOKEN
 
 # Installation
 if ! [ -x "$(command -v jq)" ]; then
@@ -55,35 +55,23 @@ DELETE="${CURL} -X DELETE --header \""$ACCEPT_JSON"\""
 OPTIONS="${CURL} -X OPTIONS --header \""$ACCEPT_JSON"\""
 HEAD="${CURL} -X HEAD --header \""$ACCEPT_JSON"\""
 
+echo "timestamp actuel : ${TODAY}T00:00:00Z"
+LAST_MONTH=TODAY;
+
+TODAY="$(date +"%Y-%m-%d")"
+PAST_MONTH=$(date -d "-1 month" +%Y-%m-%d)
+echo "timestamp ya un moins : ${PAST_MONTH}T00:00:00Z"
+
+INTERVAL="day"
+
+DEBUG='  --header "$AUTH" ${URL}'/api/gateways/'${GWID}'/stats?interval='${INTERVAL}'&startTimestamp=$'${PAST_MONTH}'T00:00:00Z&endTimestamp='${TODAY}'T00:00:00Z' \
+'
+echo "${DEBUG}"
+
 ${GET} \
-  --header "$AUTH" ${URL}'/api/gateways?limit=1000&offset=0' \
-  > .gateways.json
+  --header "$AUTH" ${URL}'/api/gateways/'${GWID}'/stats?interval='${INTERVAL}'&startTimestamp='${PAST_MONTH}'T00:00:00Z&endTimestamp='${TODAY}'T00:00:00Z' \
+  > .gateway-${GWID}_stats.json
 
-echo '<html><head><title>CampusIoT LNS :: Gateways</title></head><body style="font-family:verdana;"><h1>CampusIoT LNS :: Gateways</h1>' > .gateways.html
-
-TODAY=$(date +"%Y-%m-%d")
-echo '<p>generated at ' >> .gateways.html
-date +"%Y-%m-%d %T %Z" >> .gateways.html
-echo ' - ' >> .gateways.html
-TZ=GMT date +"%Y-%m-%d %T %Z" >> .gateways.html
-echo '</p>' >> .gateways.html
-
-echo '<h2>Active gateways</h2>' >> .gateways.html
-
-jq --raw-output -f gateways_to_html.jq .gateways.json | grep $TODAY >> .gateways.html
-
-echo '<h2>Passive gateways</h2>' >> .gateways.html
-
-jq --raw-output -f gateways_to_html.jq .gateways.json | grep -v $TODAY >> .gateways.html
-
-echo '</body></html>' >> .gateways.html
-
-GATEWAYS=$(jq --raw-output ".result | sort_by(.lastSeenAt, .id) | reverse [] | (.id)" .gateways.json)
-for g in $GATEWAYS
-do
-echo "get details for $g"
-./get_gateway.sh $TOKEN $g
-./get_gateway_stats.sh $TOKEN $g $TODAY
-done
-
-./get_id_gatewaysChange.sh
+#  'https://lns.campusiot.imag.fr/api/gateways/7276ff0039030724/stats?interval=day&startTimestamp=2021-02-09T00%3A00%3A00Z&endTimestamp=2021-03-09T00%3A00%3A00Z'
+ 
+#   https://lns.campusiot.imag.fr:443'/api/gateways/'7276ff0039030871'/stats?interval='day'&startTimestamp=$'2021-02-09'T00:00:00Z&endTimestamp='2021-03-09'T00:00:00Z'

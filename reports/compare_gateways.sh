@@ -4,16 +4,17 @@
 # Written by CampusIoT Dev Team, 2016-2021
 
 # ------------------------------------------------
-# Get getaways
+# Get the detail of a getaway
 # ------------------------------------------------
 
 # Parameters
-if [[ $# -ne 1 ]] ; then
-    echo "Usage: $0 JWT"
+if [[ $# -ne 2 ]] ; then
+    echo "Usage: $0 JWT GWID"
     exit 1
 fi
 
 TOKEN="$1"
+GWID="$2"
 
 AUTH="Grpc-Metadata-Authorization: Bearer $TOKEN"
 #sudo npm install -g jwt-cli
@@ -56,34 +57,5 @@ OPTIONS="${CURL} -X OPTIONS --header \""$ACCEPT_JSON"\""
 HEAD="${CURL} -X HEAD --header \""$ACCEPT_JSON"\""
 
 ${GET} \
-  --header "$AUTH" ${URL}'/api/gateways?limit=1000&offset=0' \
-  > .gateways.json
-
-echo '<html><head><title>CampusIoT LNS :: Gateways</title></head><body style="font-family:verdana;"><h1>CampusIoT LNS :: Gateways</h1>' > .gateways.html
-
-TODAY=$(date +"%Y-%m-%d")
-echo "$TODAY"
-
-
-echo '<p>generated at ' >> .gateways.html
-date +"%Y-%m-%d %T %Z" >> .gateways.html
-echo ' - ' >> .gateways.html
-TZ=GMT date +"%Y-%m-%d %T %Z" >> .gateways.html
-echo '</p>' >> .gateways.html
-
-echo '<h2>Active gateways</h2>' >> .gateways.html
-
-jq --raw-output -f gateways_to_html.jq .gateways.json | grep $TODAY >> .gateways.html
-
-echo '<h2>Passive gateways</h2>' >> .gateways.html
-
-jq --raw-output -f gateways_to_html.jq .gateways.json | grep -v $TODAY >> .gateways.html
-
-echo '</body></html>' >> .gateways.html
-
-GATEWAYS=$(jq --raw-output ".result | sort_by(.lastSeenAt, .id) | reverse [] | (.id)" .gateways.json)
-for g in $GATEWAYS
-do
-echo "get details for $g"
-./get_gateway.sh $TOKEN $g
-done
+  --header "$AUTH" ${URL}'/api/gateways/'${GWID} \
+  > .gateway-${GWID}.json

@@ -73,11 +73,14 @@ echo '</p>' >> .gateways.html
 
 echo '<h2>Active gateways</h2>' >> .gateways.html
 
-jq --raw-output -f gateways_to_html.jq .gateways.json | grep $TODAY >> .gateways.html
+jq --raw-output -f gateways_to_html_v2.jq gateways_today.json | grep $TODAY >> .gateways.html
 
 echo '<h2>Passive gateways</h2>' >> .gateways.html
 
-jq --raw-output -f gateways_to_html.jq .gateways.json | grep -v $TODAY >> .gateways.html
+echo "<div style=\"color: red\">" >> .gateways.html
+jq --raw-output -f gateways_to_html_v2.jq gateways_today.json | grep -v $TODAY >> .gateways.html
+
+echo "</div>" >> .gateways.html
 
 echo '</body></html>' >> .gateways.html
 

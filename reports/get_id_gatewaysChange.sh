@@ -18,7 +18,7 @@ dates=$(jq --raw-output ".result[] | .lastSeenAt" .gateways.json)
 date=()
 date=($dates)
 state=()
-full_date==()
+full_date=()
 d=()
 for (( i=0; i<${#date[@]}; i++ ))
 do

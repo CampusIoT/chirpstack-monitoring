@@ -1,9 +1,10 @@
 #!/bin/bash
 
-TODAY="2021-03-02"
+#TODAY="2021-03-02"
+TODAY="$(date +"%Y-%m-%d")"
 
 #On stock les ids des gateways d'aujourd'hui
-ids=$(jq --raw-output ".result[] | .id" test_json1.json)
+ids=$(jq --raw-output ".result[] | .id" .gateways.json)
 id=()
 i=0
 for ID in $ids
@@ -13,7 +14,7 @@ do
 done
 
 #On stock les dates de dernière activité des gateways d'aujourd'hui
-dates=$(jq --raw-output ".result[] | .lastSeenAt" test_json1.json)
+dates=$(jq --raw-output ".result[] | .lastSeenAt" .gateways.json)
 date=()
 date=($dates)
 state=()
@@ -49,7 +50,7 @@ do
 done
 
 #On stock les ids des gateways d'hier
-ids_2=$(jq --raw-output ".result[] | .id" test_json2.json)
+ids_2=$(jq --raw-output ".result[] | .id" lastGatewaysStates.json)
 id_2=()
 i=0
 for ID in $ids_2
@@ -59,7 +60,7 @@ do
 done
 
 #On stock les states des gateways d'hier
-full_state=$(jq --raw-output ".result[] | .lastState" test_json2.json)
+full_state=$(jq --raw-output ".result[] | .lastState" lastGatewaysStates.json)
 states_2=()
 j=0
 for s in $full_state
@@ -87,14 +88,14 @@ done
 #On met à jour les states des gateways pour le prochain jour
 echo "{
   \"totalCount\": \"${#id[@]}\",
-  \"result\": [" > test.txt
+  \"result\": [" > lastGatewaysStates.json
 
 for (( i=0; i<$((${#id[@]}-1)); i++ ))
 do
     echo "    {
       \"id\": \"${id[$i]}\",
       \"lastState\": \"${state[$i]}\"
-    }," >> test.txt
+    }," >> lastGatewaysStates.json
 done
 
 echo "    {
@@ -102,7 +103,7 @@ echo "    {
       \"lastState\": \"${state[$((${#id[@]}-1))]}\"
     }
   ]
-}" >> test.txt
+}" >> lastGatewaysStates.json
 
 
 
@@ -110,13 +111,13 @@ echo "    {
 
 
 
-#jq --raw-output -f gateways_to_html.jq test_json1.json | grep "0000024b0805031a"
+#jq --raw-output -f gateways_to_html.jq .gateways.json | grep "0000024b0805031a"
 
 
 
 
-#jq --raw-output ".result" test_json1.json
-#jq -c ".result | sort_by(.lastSeenAt, .id) | reverse []" test_json1.json
+#jq --raw-output ".result" .gateways.json
+#jq -c ".result | sort_by(.lastSeenAt, .id) | reverse []" .gateways.json
 #data=()
 #objects=()
 #id=()

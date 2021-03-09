@@ -84,3 +84,5 @@ do
 echo "get details for $g"
 ./get_gateway.sh $TOKEN $g
 done
+
+./get_id_gatewaysChange.sh

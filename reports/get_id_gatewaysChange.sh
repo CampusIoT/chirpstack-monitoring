@@ -81,9 +81,11 @@ do
             then
                 if [[ "${state[$i]}" == "active" ]]
                 then
-                    replacement="<li style="color:green"><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-07T19:14:43.804084Z</li>"
+                    tmp=$(grep ${id[$i]} < .gateways.html)
+                    replacement=${tmp/"<li>"/"<li style="color:green">"}
                 else
-                    replacement="<li style="color:red"><a href='https://lns.campusiot.imag.fr/#/organizations/6/gateways/7276ff0039030716'>7276ff0039030716</a>: KER_FEMTO_030716_P307 - (org 6) - 2021-03-07T19:14:43.804084Z</li>"
+                    tmp=$(grep ${id[$i]} < .gateways.html)
+                    replacement=${tmp/"<li>"/"<li style="color:red">"}
                 fi
                 sed -i "/${id[$i]}/c $replacement" .gateways.html
             fi

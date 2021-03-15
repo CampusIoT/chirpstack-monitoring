@@ -15,5 +15,5 @@ CONTENT_TYPE="Content-type: text/html"
 #mail -a "$CONTENT_TYPE" -s "$SUBJECT" -u monitoring $TO <.gateways.html
 #mail -a "$CONTENT_TYPE" -s "$SUBJECT" -u monitoring $TO <.devices.html
 
-#mailx -a "$CONTENT_TYPE" -s "$SUBJECT" <.gateways.html "$TO"
-mail -s "Test" kevyung24@gmail.com
+mailx -a "$CONTENT_TYPE" -s "$SUBJECT" <.gateways.html "$TO"
+#mail -s "Test" kevyung24@gmail.com

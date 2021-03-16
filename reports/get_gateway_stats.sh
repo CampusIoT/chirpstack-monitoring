@@ -55,18 +55,8 @@ DELETE="${CURL} -X DELETE --header \""$ACCEPT_JSON"\""
 OPTIONS="${CURL} -X OPTIONS --header \""$ACCEPT_JSON"\""
 HEAD="${CURL} -X HEAD --header \""$ACCEPT_JSON"\""
 
-echo "timestamp actuel : ${TODAY}T00:00:00Z"
-LAST_MONTH=TODAY;
-
-TODAY="$(date +"%Y-%m-%d")"
 PAST_MONTH=$(date -d "-1 month" +%Y-%m-%d)
-echo "timestamp ya un moins : ${PAST_MONTH}T00:00:00Z"
-
 INTERVAL="day"
-
-DEBUG='  --header "$AUTH" ${URL}'/api/gateways/'${GWID}'/stats?interval='${INTERVAL}'&startTimestamp=$'${PAST_MONTH}'T00:00:00Z&endTimestamp='${TODAY}'T00:00:00Z' \
-'
-echo "${DEBUG}"
 
 ${GET} \
   --header "$AUTH" ${URL}'/api/gateways/'${GWID}'/stats?interval='${INTERVAL}'&startTimestamp='${PAST_MONTH}'T00:00:00Z&endTimestamp='${TODAY}'T00:00:00Z' \

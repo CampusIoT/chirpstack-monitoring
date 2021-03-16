@@ -59,26 +59,11 @@ ${GET} \
   --header "$AUTH" ${URL}'/api/gateways?limit=1000&offset=0' \
   > .gateways.json
 
-echo '<html><head><title>CampusIoT LNS :: Gateways</title></head><body style="font-family:verdana;"><h1>CampusIoT LNS :: Gateways</h1>' > .gateways.html
-
 TODAY=$(date +"%Y-%m-%d")
-echo '<p>generated at ' >> .gateways.html
-date +"%Y-%m-%d %T %Z" >> .gateways.html
-echo ' - ' >> .gateways.html
-TZ=GMT date +"%Y-%m-%d %T %Z" >> .gateways.html
-echo '</p>' >> .gateways.html
 
-echo '<h2>Active gateways</h2>' >> .gateways.html
-
-jq --raw-output -f gateways_to_html.jq .gateways.json | grep $TODAY >> .gateways.html
-
-echo '<h2>Passive gateways</h2>' >> .gateways.html
-
-jq --raw-output -f gateways_to_html.jq .gateways.json | grep -v $TODAY >> .gateways.html
-
-echo '</body></html>' >> .gateways.html
-
+#generates json files of gateways informations and gateways statistics.
 GATEWAYS=$(jq --raw-output ".result | sort_by(.lastSeenAt, .id) | reverse [] | (.id)" .gateways.json)
+GATEWAYS_LEN=$(jq --raw-output ".totalCount" .gateways.json)
 for g in $GATEWAYS
 do
 echo "get details for $g"
@@ -86,4 +71,8 @@ echo "get details for $g"
 ./get_gateway_stats.sh $TOKEN $g $TODAY
 done
 
+echo "generate html (with sparkline)"
+./gateways_to_html.sh $GATEWAYS_LEN $GATEWAYS $TODAY
+
+echo "Passive Active Check"
 ./get_id_gatewaysChange.sh

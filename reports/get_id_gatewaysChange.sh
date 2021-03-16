@@ -91,6 +91,13 @@ do
             fi
         fi
     done
+    if [[ ${date[$i]} != "null" ]]
+    then
+        tmp=$(grep ${id[$i]} < .gateways.html)
+        dateFromNow=$(node changeDateMomentjs.js ${date[$i]})
+        replacement=${tmp/${date[$i]}/"$dateFromNow"}
+        sed -i "/${id[$i]}/c $replacement" .gateways.html
+    fi
 done
 
 #On met à jour les states des gateways pour le prochain jour
@@ -112,62 +119,3 @@ echo "    {
     }
   ]
 }" >> lastGatewaysStates.json
-
-
-
-
-
-
-
-#jq --raw-output -f gateways_to_html.jq .gateways.json | grep "0000024b0805031a"
-
-
-
-
-#jq --raw-output ".result" .gateways.json
-#jq -c ".result | sort_by(.lastSeenAt, .id) | reverse []" .gateways.json
-#data=()
-#objects=()
-#id=()
-#lastSeenAt=()
-#i=0
-#while read x
-#do
-#    data[$i]=$(echo $x | tr "," "\n")
-#    i=$((i+1))
-#done <data.txt
-#
-#echo ${data[1]}
-#echo "---"
-#j=0
-#cpt=$((${#data[@]}-1))
-#for (( j=0; j<=$cpt; j++ ))
-#do
-#    echo ${data[$j]}
-#    echo "---"
-#
-#    #On récupère toutes les id dans le tableau id
-#    tmp=$(echo ${data[$j]} | tr [:space:] "_" | sed -e 's,"id":,\n,g')
-#    k=0
-#    for d in $tmp
-#    do
-#        objects[$k]=$d
-#        k=$((k+1))
-#    done
-#    tmp=$(echo ${objects[1]} | tr "_" "\n")
-#    for a in $tmp
-#    do
-#        id[$j]=$a
-#        break
-#    done
-#
-#    #On récupère toutes les dates lastSeenAt dans un tableau (qui représentera le champ pour chaque id)
-#    #tmp
-#done
-#
-#echo ${id[0]}
-#echo ${id[1]}
-#echo ${id[2]}
-#echo ${id[3]}
-##echo $test
-##echo ${objects[1]}

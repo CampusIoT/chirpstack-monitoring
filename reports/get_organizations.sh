@@ -59,4 +59,13 @@ ${GET} \
   --header "$AUTH" ${URL}'/api/organizations?limit=1000&offset=0' \
   > .organizations.json
 
+
 jq '.result[] | ( .id + ": " + .name + " - " + .displayName)' .organizations.json
+
+ids=$(jq --raw-output ".result[] | .id" .organizations.json)
+ids_array=($ids)
+
+for (( i=0; i<${#ids_array[@]}; i++ ))
+do
+  ./get_applications.sh $TOKEN "${ids_array[i]}"
+done

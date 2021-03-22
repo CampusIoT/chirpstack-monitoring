@@ -56,9 +56,28 @@ DELETE="${CURL} -X DELETE --header \""$ACCEPT_JSON"\""
 OPTIONS="${CURL} -X OPTIONS --header \""$ACCEPT_JSON"\""
 HEAD="${CURL} -X HEAD --header \""$ACCEPT_JSON"\""
 
-${GET} \
-  --header "$AUTH" ${URL}'/api/devices?limit=9999&offset=0' \
-  > .devices.json
+
+ids_org=$(jq --raw-output ".result[] | .id" .organizations.json)
+ids_org_array=($ids_org)
+for ((i=0; i<${#ids_org_array[@]}; i++))
+do
+  ids_app=$(jq --raw-output ".result[] | .id" .organization${ids_org_array[i]}_applications.json)
+  ids_app_array=($ids_app)
+  for ((j=0; j<${#ids_app_array[@]}; j++))
+  do
+    ${GET} \
+      --header "$AUTH" ${URL}'/api/devices?limit=9999&applicationID='${ids_app_array[j]} \
+      > .application${ids_app_array[j]}_devices.json
+  done
+done
+
+jq -s '.[0].result = [.[].result | add] | .[0]' .application*.json > .devices.json
+
+#${GET} \
+#  --header "$AUTH" ${URL}'/api/devices?limit=9999&offset=0' \
+#  > .devices.json
+
+
 
 echo '<html><head><title>CampusIoT LNS :: Devices</title></head><body style="font-family:verdana;"><h1>CampusIoT LNS :: Devices</h1>' > .devices.html
 
@@ -78,5 +97,3 @@ echo '<h2>Passive devices</h2>' >> .devices.html
 jq --raw-output -f devices_to_html.jq .devices.json | grep -v $TODAY >> .devices.html
 
 echo '</body></html>' >> .devices.html
-
-

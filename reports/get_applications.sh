@@ -8,12 +8,13 @@
 # ------------------------------------------------
 
 # Parameters
-if [[ $# -ne 1 ]] ; then
-    echo "Usage: $0 JWT"
+if [[ $# -ne 2 ]] ; then
+    echo "Usage: $0 JWT OID"
     exit 1
 fi
 
 TOKEN="$1"
+OID="$2"
 
 AUTH="Grpc-Metadata-Authorization: Bearer $TOKEN"
 #sudo npm install -g jwt-cli
@@ -57,7 +58,7 @@ OPTIONS="${CURL} -X OPTIONS --header \""$ACCEPT_JSON"\""
 HEAD="${CURL} -X HEAD --header \""$ACCEPT_JSON"\""
 
 ${GET} \
-  --header "$AUTH" ${URL}'/api/applications?limit=9999&offset=0' \
-  > .applications.json
+  --header "$AUTH" ${URL}'/api/applications?limit=9999&organizationID='${OID} \
+  > .organization${OID}_applications.json
 
 jq '.result[] | ( .id + ": " + .name + " - " + .organizationID + " - " + .description)' .applications.json

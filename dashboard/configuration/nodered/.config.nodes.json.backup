@@ -412,26 +412,6 @@
             }
         }
     },
-    "node-red-contrib-cayenne-mqtt-client": {
-        "name": "node-red-contrib-cayenne-mqtt-client",
-        "version": "0.0.2",
-        "local": false,
-        "nodes": {
-            "client": {
-                "name": "client",
-                "types": [
-                    "cayenne actuator-feedback",
-                    "cayenne actuator",
-                    "cayenne sensor",
-                    "cayenne-client"
-                ],
-                "enabled": true,
-                "local": false,
-                "module": "node-red-contrib-cayenne-mqtt-client",
-                "file": "/usr/src/node-red/node_modules/node-red-contrib-cayenne-mqtt-client/10-client.js"
-            }
-        }
-    },
     "node-red-contrib-sms-free-mobile": {
         "name": "node-red-contrib-sms-free-mobile",
         "version": "0.1.0",
@@ -447,53 +427,6 @@
                 "local": false,
                 "module": "node-red-contrib-sms-free-mobile",
                 "file": "/usr/src/node-red/node_modules/node-red-contrib-sms-free-mobile/sms-free-mobile.js"
-            }
-        }
-    },
-    "node-red-contrib-ttn": {
-        "name": "node-red-contrib-ttn",
-        "version": "2.0.5",
-        "local": false,
-        "nodes": {
-            "ttn-app": {
-                "name": "ttn-app",
-                "types": [
-                    "ttn app"
-                ],
-                "enabled": true,
-                "local": false,
-                "module": "node-red-contrib-ttn",
-                "file": "/usr/src/node-red/node_modules/node-red-contrib-ttn/ttn-app/ttn-app.js"
-            },
-            "ttn-event": {
-                "name": "ttn-event",
-                "types": [
-                    "ttn event"
-                ],
-                "enabled": true,
-                "local": false,
-                "module": "node-red-contrib-ttn",
-                "file": "/usr/src/node-red/node_modules/node-red-contrib-ttn/ttn-event/ttn-event.js"
-            },
-            "ttn-uplink": {
-                "name": "ttn-uplink",
-                "types": [
-                    "ttn uplink"
-                ],
-                "enabled": true,
-                "local": false,
-                "module": "node-red-contrib-ttn",
-                "file": "/usr/src/node-red/node_modules/node-red-contrib-ttn/ttn-uplink/ttn-uplink.js"
-            },
-            "ttn-downlink": {
-                "name": "ttn-downlink",
-                "types": [
-                    "ttn downlink"
-                ],
-                "enabled": true,
-                "local": false,
-                "module": "node-red-contrib-ttn",
-                "file": "/usr/src/node-red/node_modules/node-red-contrib-ttn/ttn-downlink/ttn-downlink.js"
             }
         }
     }

@@ -4,7 +4,7 @@
 # Written by CampusIoT Dev Team, 2016-2021
 
 # ------------------------------------------------
-# Get getaways
+# Get devices
 # ------------------------------------------------
 
 # Parameters
@@ -13,7 +13,8 @@ if [[ $# -ne 1 ]] ; then
     exit 1
 fi
 
-TOKEN="$1"
+#TOKEN="$1"
+TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjaGlycHN0YWNrLWFwcGxpY2F0aW9uLXNlcnZlciIsImV4cCI6MTYxNjUwNzA5OCwiaXNzIjoiY2hpcnBzdGFjay1hcHBsaWNhdGlvbi1zZXJ2ZXIiLCJuYmYiOjE2MTY0MjA2OTgsInN1YiI6InVzZXIiLCJ1c2VybmFtZSI6IkNoaXJwc3RhY2tNb25pdG9yaW5nIn0.oFx7qWOiGY49FpgCKXAaAt6TkDVcQgtg3dz6mIyUj6w"
 
 AUTH="Grpc-Metadata-Authorization: Bearer $TOKEN"
 #sudo npm install -g jwt-cli
@@ -45,6 +46,7 @@ PORT=443
 URL=https://lns.campusiot.imag.fr:$PORT
 
 # Operations
+# Operations
 #CURL="curl --verbose"
 CURL="curl -s --insecure"
 #CURL="curl -s"
@@ -55,37 +57,10 @@ DELETE="${CURL} -X DELETE --header \""$ACCEPT_JSON"\""
 OPTIONS="${CURL} -X OPTIONS --header \""$ACCEPT_JSON"\""
 HEAD="${CURL} -X HEAD --header \""$ACCEPT_JSON"\""
 
-${GET} \
-  --header "$AUTH" ${URL}'/api/gateways?limit=1000&offset=0' \
-  > .gateways.json
+jq -s '.[0].result = [.[].result | add] | .[0]' .test*.json > .test_devices.json
 
-echo '<html><head><title>CampusIoT LNS :: Gateways</title></head><body style="font-family:verdana;"><h1>CampusIoT LNS :: Gateways</h1>' > .gateways.html
+#${GET} \
+#  --header "$AUTH" ${URL}'/api/applications?limit=9999&organizationID=6'
 
-TODAY=$(date +"%Y-%m-%d")
-echo "$TODAY"
-
-
-echo '<p>generated at ' >> .gateways.html
-date +"%Y-%m-%d %T %Z" >> .gateways.html
-echo ' - ' >> .gateways.html
-TZ=GMT date +"%Y-%m-%d %T %Z" >> .gateways.html
-echo '</p>' >> .gateways.html
-
-echo '<h2>Active gateways</h2>' >> .gateways.html
-
-jq --raw-output -f gateways_to_html.jq .gateways.json | grep $TODAY >> .gateways.html
-
-echo '<h2>Passive gateways</h2>' >> .gateways.html
-
-jq --raw-output -f gateways_to_html.jq .gateways.json | grep -v $TODAY >> .gateways.html
-
-echo '</body></html>' >> .gateways.html
-
-GATEWAYS=$(jq --raw-output ".result | sort_by(.lastSeenAt, .id) | reverse [] | (.id)" .gateways.json)
-for g in $GATEWAYS
-do
-echo "get details for $g"
-./get_gateway.sh $TOKEN $g
-done
-
-./get_id_gatewaysChange.sh
+#${GET} \
+#  --header "$AUTH" ${URL}'/api/devices?limit=9999&applicationID=58'

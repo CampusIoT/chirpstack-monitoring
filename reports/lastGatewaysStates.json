@@ -1,5 +1,5 @@
 {
-  "totalCount": "24",
+  "totalCount": "23",
   "result": [
     {
       "id": "0000024b0805031a",
@@ -87,10 +87,6 @@
     },
     {
       "id": "0080e1ffff0153cc",
-      "lastState": "passive"
-    },
-    {
-      "id": "0080e1ffff015b18",
       "lastState": "passive"
     },
     {

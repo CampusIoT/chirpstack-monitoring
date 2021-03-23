@@ -6,7 +6,7 @@ process.argv.shift(); // skip path of js file
 argv = process.argv.join(" ") // parse to keep only the string
 
 function f(lastSeenAt) {
-    //console.log(lastSeenAt);
+    console.log(lastSeenAt);
     lastSeenAt = new Date(lastSeenAt);
     return moment(lastSeenAt).fromNow();
 }

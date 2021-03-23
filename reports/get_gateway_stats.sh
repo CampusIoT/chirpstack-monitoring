@@ -4,21 +4,20 @@
 # Written by CampusIoT Dev Team, 2016-2021
 
 # ------------------------------------------------
-# Get devices
+# Get the stats of a get gateway
 # ------------------------------------------------
 
 # Parameters
-if [[ $# -ne 1 ]] ; then
-    echo "Usage: $0 JWT"
+if [[ $# -ne 3 ]] ; then
+    echo "Usage: $0 JWT GWID TODAY"
     exit 1
 fi
 
-#TOKEN="$1"
-TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjaGlycHN0YWNrLWFwcGxpY2F0aW9uLXNlcnZlciIsImV4cCI6MTYxNjUwNzA5OCwiaXNzIjoiY2hpcnBzdGFjay1hcHBsaWNhdGlvbi1zZXJ2ZXIiLCJuYmYiOjE2MTY0MjA2OTgsInN1YiI6InVzZXIiLCJ1c2VybmFtZSI6IkNoaXJwc3RhY2tNb25pdG9yaW5nIn0.oFx7qWOiGY49FpgCKXAaAt6TkDVcQgtg3dz6mIyUj6w"
+TOKEN="$1"
+GWID="$2"
+TODAY="$3"
 
 AUTH="Grpc-Metadata-Authorization: Bearer $TOKEN"
-#sudo npm install -g jwt-cli
-#jwt $TOKEN
 
 # Installation
 if ! [ -x "$(command -v jq)" ]; then
@@ -46,7 +45,6 @@ PORT=443
 URL=https://lns.campusiot.imag.fr:$PORT
 
 # Operations
-# Operations
 #CURL="curl --verbose"
 CURL="curl -s --insecure"
 #CURL="curl -s"
@@ -57,10 +55,13 @@ DELETE="${CURL} -X DELETE --header \""$ACCEPT_JSON"\""
 OPTIONS="${CURL} -X OPTIONS --header \""$ACCEPT_JSON"\""
 HEAD="${CURL} -X HEAD --header \""$ACCEPT_JSON"\""
 
-jq -s '.[0].result = [.[].result | add] | .[0]' .test*.json > .test_devices.json
+PAST_MONTH=$(date -d "-1 month" +%Y-%m-%d)
+INTERVAL="day"
 
-#${GET} \
-#  --header "$AUTH" ${URL}'/api/applications?limit=9999&organizationID=6'
+${GET} \
+  --header "$AUTH" ${URL}'/api/gateways/'${GWID}'/stats?interval='${INTERVAL}'&startTimestamp='${PAST_MONTH}'T00:00:00Z&endTimestamp='${TODAY}'T00:00:00Z' \
+  > .gateway-${GWID}_stats.json
 
-#${GET} \
-#  --header "$AUTH" ${URL}'/api/devices?limit=9999&applicationID=58'
+#  'https://lns.campusiot.imag.fr/api/gateways/7276ff0039030724/stats?interval=day&startTimestamp=2021-02-09T00%3A00%3A00Z&endTimestamp=2021-03-09T00%3A00%3A00Z'
+ 
+#   https://lns.campusiot.imag.fr:443'/api/gateways/'7276ff0039030871'/stats?interval='day'&startTimestamp=$'2021-02-09'T00:00:00Z&endTimestamp='2021-03-09'T00:00:00Z'

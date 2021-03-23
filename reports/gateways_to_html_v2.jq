@@ -1,1 +1,0 @@
-.result | sort_by(.lastSeenAt, .id) | reverse [] | ("<li><a href='" + @uri "https://lns.campusiot.imag.fr/#/organizations/\(.organizationID)/gateways/\(.id)" + "'>" + .id + "</a>: " + .name + " - (org " + .organizationID + ") - " + .lastSeenAt + " - " + .lastState + "</li>"   )

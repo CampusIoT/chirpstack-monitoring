@@ -326,6 +326,15 @@
         "type": "inject",
         "z": "8ef8462d.3e5728",
         "name": "CREATE DATABASE lorawan",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -361,6 +370,7 @@
         "rawOutput": false,
         "precision": "",
         "retentionPolicy": "",
+        "org": "",
         "x": 560,
         "y": 120,
         "wires": [

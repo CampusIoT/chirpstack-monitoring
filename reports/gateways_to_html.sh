@@ -14,7 +14,7 @@
 
 # Parameters
 if [[ $# -eq 0 ]]; then
-    echo "Aucun arguments renseignées : Usage: $0 GATEWAYS_LENGTH GATEWAYS TODAY"
+    echo "No arguments : Usage: $0 GATEWAYS_LENGTH GATEWAYS TODAY"
     exit 1
 fi
 
@@ -26,7 +26,7 @@ if [[ $# -ne args_len ]]; then
     exit 1
 fi
 
-GATEWAYS=${@:2:$GATEWAYS_LENGTH} # on recupère les données de la gateway passés en paramètre en subsituant la taille et la date du jour.
+GATEWAYS=${@:2:$GATEWAYS_LENGTH} # We get data from the gateway which is passed in parameter and we are replacing the length and date time
 TODAY="${@:$#}"                  # last parameter
 
 # gateways_to_html : Step 1 : Generate header.

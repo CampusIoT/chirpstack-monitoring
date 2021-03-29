@@ -2,13 +2,13 @@
 
 TODAY="$(date +"%Y-%m-%d")"
 
-#On stock les ids des gateways d'aujourd'hui
-ids=$(jq --raw-output ".result[] | .id" .gateways.json)
+#On stock les ids des devices d'aujourd'hui
+ids=$(jq --raw-output ".result[] | select(.!=null) | .devEUI" .devices.json)
 id=($ids)
 
 
-#On stock les dates de dernière activité des gateways d'aujourd'hui
-dates=$(jq --raw-output ".result[] | .lastSeenAt" .gateways.json)
+#On stock les dates de dernière activité des devices d'aujourd'hui
+dates=$(jq --raw-output ".result[] | select(.!=null) | .lastSeenAt" .devices.json)
 date=()
 date=($dates)
 state=()
@@ -30,9 +30,8 @@ do
     fi
 done
 
-
-#On stock les states des gateways d'aujourd'hui dans un tableau en regardant la date
-#de dernière activité des gateways
+#On stock les states des devices d'aujourd'hui dans un tableau en regardant la date
+#de dernière activité des devices
 for (( i=0; i<${#d[@]}; i++ ))
 do
     if [[ "${d[$i]}" == "$TODAY" ]]
@@ -43,8 +42,9 @@ do
     fi
 done
 
-#On stock les ids des gateways d'hier
-ids_2=$(jq --raw-output ".result[] | .id" lastGatewaysStates.json)
+
+#On stock les ids des devices d'hier
+ids_2=$(jq --raw-output ".result[] | .id" lastdevicesStates.json)
 id_2=()
 i=0
 for ID in $ids_2
@@ -53,8 +53,8 @@ do
     i=$((i+1))
 done
 
-#On stock les states des gateways d'hier
-full_state=$(jq --raw-output ".result[] | .lastState" lastGatewaysStates.json)
+#On stock les states des devices d'hier
+full_state=$(jq --raw-output ".result[] | .lastState" lastdevicesStates.json)
 states_2=()
 j=0
 for s in $full_state
@@ -64,7 +64,7 @@ do
 done
 
 
-#On compare les states des gateways d'aujourd'hui et hier
+#On compare les states des devices d'aujourd'hui et hier
 for (( i=0; i<${#id[@]}; i++ ))
 do
     for (( j=0; j<${#id_2[@]}; j++ ))
@@ -75,36 +75,36 @@ do
             then
                 if [[ "${state[$i]}" == "active" ]]
                 then
-                    tmp=$(grep ${id[$i]} < .gateways.html)
+                    tmp=$(grep ${id[$i]} < .devices.html)
                     replacement=${tmp/"<li>"/"<li style="color:green">"}
                 else
-                    tmp=$(grep ${id[$i]} < .gateways.html)
+                    tmp=$(grep ${id[$i]} < .devices.html)
                     replacement=${tmp/"<li>"/"<li style="color:red">"}
                 fi
-                sed -i "/${id[$i]}/c $replacement" .gateways.html
+                sed -i "/${id[$i]}/c $replacement" .devices.html
             fi
         fi
     done
     if [[ ${date[$i]} != "null" ]]
     then
-        tmp=$(grep ${id[$i]} < .gateways.html)
+        tmp=$(grep ${id[$i]} < .devices.html)
         dateFromNow=$(node changeDateMomentjs.js ${date[$i]})
         replacement=${tmp/${date[$i]}/"$dateFromNow"}
-        sed -i "/${id[$i]}/c $replacement" .gateways.html
+        sed -i "/${id[$i]}/c $replacement" .devices.html
     fi
 done
 
-#On met à jour les states des gateways pour le prochain jour
+#On met à jour les states des devices pour le prochain jour
 echo "{
   \"totalCount\": \"${#id[@]}\",
-  \"result\": [" > lastGatewaysStates.json
+  \"result\": [" > lastdevicesStates.json
 
 for (( i=0; i<$((${#id[@]}-1)); i++ ))
 do
     echo "    {
       \"id\": \"${id[$i]}\",
       \"lastState\": \"${state[$i]}\"
-    }," >> lastGatewaysStates.json
+    }," >> lastdevicesStates.json
 done
 
 echo "    {
@@ -112,4 +112,4 @@ echo "    {
       \"lastState\": \"${state[$((${#id[@]}-1))]}\"
     }
   ]
-}" >> lastGatewaysStates.json
+}" >> lastdevicesStates.json

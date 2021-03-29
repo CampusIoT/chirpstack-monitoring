@@ -61,4 +61,4 @@ ${GET} \
   --header "$AUTH" ${URL}'/api/applications?limit=9999&organizationID='${OID} \
   > .organization${OID}_applications.json
 
-jq '.result[] | ( .id + ": " + .name + " - " + .organizationID + " - " + .description)' .applications.json
+#jq '.result[] | ( .id + ": " + .name + " - " + .organizationID + " - " + .description)' .applications.json

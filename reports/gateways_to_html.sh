@@ -26,6 +26,10 @@ if [[ $# -ne args_len ]]; then
     exit 1
 fi
 
+# DATA REPOSITORY
+DATA_APP_FOLDER="data/applications/"
+DATA_GAT_FOLDER="data/gateways/"
+
 GATEWAYS=${@:2:$GATEWAYS_LENGTH} # We get data from the gateway which is passed in parameter and we are replacing the length and date time
 TODAY="${@:$#}"                  # last parameter
 
@@ -49,28 +53,28 @@ echo "generate_sparkline_packets : \n ========== \n ========== \n "
 
 for g in $GATEWAYS; do
 
-    packet_received=$(jq -r '.result | map(.rxPacketsReceivedOK) | join(",")' .gateway-${g}_stats.json)
+    packet_received=$(jq -r '.result | map(.rxPacketsReceivedOK) | join(",")' ${DATA_GAT_FOLDER}.gateway-${g}_stats.json)
 
     jq --raw-output "(  \"<li><a \" 
         + \"href='https://lns.campusiot.imag.fr/#/organizations/\(.gateway.organizationID)/gateways/\(.gateway.id)'\" + \">\" + .gateway.id + \"</a>: \"
         + .gateway.name + \" - (org \" + .gateway.organizationID + \") - \"
         + .lastSeenAt 
         + \" - packets received last month : <span class='inlinesparkline'>${packet_received}</span>\" 
-    + \"</li>\" )" .gateway-${g}.json | grep $TODAY >>.gateways.html
+    + \"</li>\" )" ${DATA_GAT_FOLDER}.gateway-${g}.json | grep $TODAY >>.gateways.html
 done
 
 # 4.Generate Passive Gateways
 echo '<h2>Passive gateways</h2>' >>.gateways.html
 for g in $GATEWAYS; do
 
-    packet_received=$(jq -r '.result | map(.rxPacketsReceivedOK) | join(",")' .gateway-${g}_stats.json)
+    packet_received=$(jq -r '.result | map(.rxPacketsReceivedOK) | join(",")' ${DATA_GAT_FOLDER}.gateway-${g}_stats.json)
 
     jq --raw-output "(  \"<li><a \" 
         + \"href='https://lns.campusiot.imag.fr/#/organizations/\(.gateway.organizationID)/gateways/\(.gateway.id)'\" + \">\" + .gateway.id + \"</a>: \"
         + .gateway.name + \" - (org \" + .gateway.organizationID + \") - \"
         + .lastSeenAt 
         + \" - packets received last month : <span class='inlinesparkline'>${packet_received}</span>\" 
-    + \"</li>\" )" .gateway-${g}.json | grep -v $TODAY >>.gateways.html
+    + \"</li>\" )" ${DATA_GAT_FOLDER}.gateway-${g}.json | grep -v $TODAY >>.gateways.html
 
 done
 

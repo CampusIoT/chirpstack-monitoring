@@ -44,6 +44,9 @@ CONTENT_CSV="Content-Type: text/csv"
 PORT=443
 URL=https://lns.campusiot.imag.fr:$PORT
 
+# DATA REPOSITORY
+DATA_GAT_FOLDER="data/gateways/"
+
 # Operations
 #CURL="curl --verbose"
 CURL="curl -s --insecure"
@@ -57,13 +60,13 @@ HEAD="${CURL} -X HEAD --header \""$ACCEPT_JSON"\""
 
 ${GET} \
   --header "$AUTH" ${URL}'/api/gateways?limit=1000&offset=0' \
-  > .gateways.json
+  > ${DATA_GAT_FOLDER}.gateways.json
 
 TODAY=$(date +"%Y-%m-%d")
 
 #generates json files of gateways informations and gateways statistics.
-GATEWAYS=$(jq --raw-output ".result | sort_by(.lastSeenAt, .id) | reverse [] | (.id)" .gateways.json)
-GATEWAYS_LEN=$(jq --raw-output ".totalCount" .gateways.json)
+GATEWAYS=$(jq --raw-output ".result | sort_by(.lastSeenAt, .id) | reverse [] | (.id)" ${DATA_GAT_FOLDER}.gateways.json)
+GATEWAYS_LEN=$(jq --raw-output ".totalCount" ${DATA_GAT_FOLDER}.gateways.json)
 for g in $GATEWAYS
 do
 echo "get details for $g"

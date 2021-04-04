@@ -45,6 +45,9 @@ CONTENT_CSV="Content-Type: text/csv"
 PORT=443
 URL=https://lns.campusiot.imag.fr:$PORT
 
+# DATA REPOSITORY
+DATA_APP_FOLDER="data/applications/"
+
 # Operations
 # Operations
 #CURL="curl --verbose"
@@ -59,6 +62,6 @@ HEAD="${CURL} -X HEAD --header \""$ACCEPT_JSON"\""
 
 ${GET} \
   --header "$AUTH" ${URL}'/api/applications?limit=9999&organizationID='${OID} \
-  > .organization${OID}_applications.json
+  > ${DATA_APP_FOLDER}.organization${OID}_applications.json
 
 # jq '.result[] | ( .id + ": " + .name + " - " + .organizationID + " - " + .description)' .applications.json

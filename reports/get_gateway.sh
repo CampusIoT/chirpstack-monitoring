@@ -45,6 +45,9 @@ CONTENT_CSV="Content-Type: text/csv"
 PORT=443
 URL=https://lns.campusiot.imag.fr:$PORT
 
+# DATA REPOSITORY
+DATA_GAT_FOLDER="data/gateways/"
+
 # Operations
 #CURL="curl --verbose"
 CURL="curl -s --insecure"
@@ -58,4 +61,4 @@ HEAD="${CURL} -X HEAD --header \""$ACCEPT_JSON"\""
 
 ${GET} \
   --header "$AUTH" ${URL}'/api/gateways/'${GWID} \
-  > .gateway-${GWID}.json
+  > ${DATA_GAT_FOLDER}.gateway-${GWID}.json

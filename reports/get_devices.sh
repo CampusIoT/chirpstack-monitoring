@@ -44,6 +44,11 @@ CONTENT_CSV="Content-Type: text/csv"
 PORT=443
 URL=https://lns.campusiot.imag.fr:$PORT
 
+# DATA REPOSITORY
+DATA_APP_FOLDER="data/applications/"
+DATA_ORG_FOLDER="data/organizations/"
+DATA_DEV_FOLDER="data/devices/"
+
 # Operations
 # Operations
 #CURL="curl --verbose"
@@ -57,21 +62,21 @@ OPTIONS="${CURL} -X OPTIONS --header \""$ACCEPT_JSON"\""
 HEAD="${CURL} -X HEAD --header \""$ACCEPT_JSON"\""
 
 
-ids_org=$(jq --raw-output ".result[] | .id" .organizations.json)
+ids_org=$(jq --raw-output ".result[] | .id" ${DATA_ORG_FOLDER}.organizations.json)
 ids_org_array=($ids_org)
 for ((i=0; i<${#ids_org_array[@]}; i++))
 do
-  ids_app=$(jq --raw-output ".result[] | .id" .organization${ids_org_array[i]}_applications.json)
+  ids_app=$(jq --raw-output ".result[] | .id" ${DATA_APP_FOLDER}.organization${ids_org_array[i]}_applications.json)
   ids_app_array=($ids_app)
   for ((j=0; j<${#ids_app_array[@]}; j++))
   do
     ${GET} \
       --header "$AUTH" ${URL}'/api/devices?limit=9999&applicationID='${ids_app_array[j]} \
-      > .application${ids_app_array[j]}_devices.json
+      > ${DATA_DEV_FOLDER}.application${ids_app_array[j]}_devices.json
   done
 done
 
-jq -s '.[0].result = [.[].result | add] | .[0]' .application*.json > .devices.json
+jq -s '.[0].result = [.[].result | add] | .[0]' ${DATA_DEV_FOLDER}.application*.json > ${DATA_DEV_FOLDER}.devices.json
 
 #${GET} \
 #  --header "$AUTH" ${URL}'/api/devices?limit=9999&offset=0' \
@@ -90,10 +95,10 @@ echo '</p>' >> .devices.html
 
 echo '<h2>Active devices</h2>' >> .devices.html
 
-jq --raw-output -f devices_to_html.jq .devices.json | grep $TODAY >> .devices.html
+jq --raw-output -f devices_to_html.jq ${DATA_DEV_FOLDER}.devices.json | grep $TODAY >> .devices.html
 
 echo '<h2>Passive devices</h2>' >> .devices.html
 
-jq --raw-output -f devices_to_html.jq .devices.json | grep -v $TODAY >> .devices.html
+jq --raw-output -f devices_to_html.jq ${DATA_DEV_FOLDER}.devices.json | grep -v $TODAY >> .devices.html
 
 echo '</body></html>' >> .devices.html

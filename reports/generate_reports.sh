@@ -7,8 +7,11 @@
 # Generate the reports
 # ------------------------------------------------
 
-USERNAME=$(jq --raw-output ".username" .credentials.json)
-PASSWORD=$(jq --raw-output ".password" .credentials.json)
+# DATA REPOSITORY
+DATA_CONFIG_FOLDER="data/configuration/"
+
+USERNAME=$(jq --raw-output ".username" ${DATA_CONFIG_FOLDER}.credentials.json)
+PASSWORD=$(jq --raw-output ".password" ${DATA_CONFIG_FOLDER}.credentials.json)
 
 JWT=$(./get_jwt.sh $USERNAME $PASSWORD)
 

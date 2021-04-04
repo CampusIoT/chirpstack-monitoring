@@ -44,6 +44,9 @@ CONTENT_CSV="Content-Type: text/csv"
 PORT=443
 URL=https://lns.campusiot.imag.fr:$PORT
 
+# DATA REPOSITORY
+DATA_ORG_FOLDER="data/organizations/"
+
 # Operations
 #CURL="curl --verbose"
 CURL="curl --insecure"
@@ -57,12 +60,12 @@ HEAD="${CURL} -X HEAD --header \""$ACCEPT_JSON"\""
 
 ${GET} \
   --header "$AUTH" ${URL}'/api/organizations?limit=1000&offset=0' \
-  > .organizations.json
+  > ${DATA_ORG_FOLDER}.organizations.json
 
 
-jq '.result[] | ( .id + ": " + .name + " - " + .displayName)' .organizations.json
+jq '.result[] | ( .id + ": " + .name + " - " + .displayName)' ${DATA_ORG_FOLDER}.organizations.json
 
-ids=$(jq --raw-output ".result[] | .id" .organizations.json)
+ids=$(jq --raw-output ".result[] | .id" ${DATA_ORG_FOLDER}.organizations.json)
 ids_array=($ids)
 
 for (( i=0; i<${#ids_array[@]}; i++ ))

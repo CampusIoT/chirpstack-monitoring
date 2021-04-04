@@ -44,6 +44,9 @@ CONTENT_CSV="Content-Type: text/csv"
 PORT=443
 URL=https://lns.campusiot.imag.fr:$PORT
 
+# DATA REPOSITORY
+DATA_GAT_FOLDER="data/gateways/"
+
 # Operations
 #CURL="curl --verbose"
 CURL="curl -s --insecure"
@@ -60,7 +63,7 @@ INTERVAL="day"
 
 ${GET} \
   --header "$AUTH" ${URL}'/api/gateways/'${GWID}'/stats?interval='${INTERVAL}'&startTimestamp='${PAST_MONTH}'T00:00:00Z&endTimestamp='${TODAY}'T00:00:00Z' \
-  > .gateway-${GWID}_stats.json
+  > ${DATA_GAT_FOLDER}.gateway-${GWID}_stats.json
 
 #  'https://lns.campusiot.imag.fr/api/gateways/7276ff0039030724/stats?interval=day&startTimestamp=2021-02-09T00%3A00%3A00Z&endTimestamp=2021-03-09T00%3A00%3A00Z'
  

@@ -67,11 +67,12 @@ HEAD="${CURL} -X HEAD --header \""$ACCEPT_JSON"\""
 # Authenfication operations
 # -----------------------------------
 
+USERNAME_LOWERCASE=${USERNAME,,} #lowercasing the name of json token file for a clean cleaning git ignore.
 
 # Get the Bearer token for the user
-rm $USERNAME.token.json
-${POST}  --header "$CONTENT_JSON" -d "$AUTH_JSON" ${URL}/api/internal/login > $USERNAME.token.json
-TOKEN=$(jq -r '.jwt' $USERNAME.token.json)
+rm *.token.json #delete old tokens
+${POST}  --header "$CONTENT_JSON" -d "$AUTH_JSON" ${URL}/api/internal/login > $USERNAME_LOWERCASE.token.json
+TOKEN=$(jq -r '.jwt' $USERNAME_LOWERCASE.token.json)
 AUTH="Grpc-Metadata-Authorization: Bearer $TOKEN"
 echo "$TOKEN"
 

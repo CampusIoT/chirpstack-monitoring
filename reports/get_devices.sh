@@ -64,12 +64,18 @@ HEAD="${CURL} -X HEAD --header \""$ACCEPT_JSON"\""
 
 ids_org=$(jq --raw-output ".result[] | .id" ${DATA_ORG_FOLDER}.organizations.json)
 ids_org_array=($ids_org)
+nb_devices=0
+DID=() #List of Devices' IDs
+OID=() #List of Organisations' IDs linked to the DID (ex OID[0] is the orgID of DID[0])
 for ((i=0; i<${#ids_org_array[@]}; i++))
 do
   ids_app=$(jq --raw-output ".result[] | .id" ${DATA_APP_FOLDER}.organization${ids_org_array[i]}_applications.json)
   ids_app_array=($ids_app)
   for ((j=0; j<${#ids_app_array[@]}; j++))
   do
+    DID[$nb_devices]=${ids_app_array[$j]}
+    OID[$nb_devices]=${ids_org_array[$i]}
+    nb_devices=$((nb_devices+1))
     ${GET} \
       --header "$AUTH" ${URL}'/api/devices?limit=9999&applicationID='${ids_app_array[j]} \
       > ${DATA_DEV_FOLDER}.application${ids_app_array[j]}_devices.json
@@ -77,6 +83,14 @@ do
 done
 
 jq -s '.[0].result = [.[].result | add] | .[0]' ${DATA_DEV_FOLDER}.application*.json > ${DATA_DEV_FOLDER}.devices.json
+
+ids=$(jq --raw-output ".result[] | select(.!=null) | .devEUI" ${DATA_DEV_FOLDER}.devices.json)
+id=($ids)
+
+tmp=$(grep "totalCount" < ${DATA_DEV_FOLDER}.devices.json)
+replacement=${tmp/"1"/"${#id[@]}"}
+sed -i "/"totalCount"/c $replacement" ${DATA_DEV_FOLDER}.devices.json
+
 
 #${GET} \
 #  --header "$AUTH" ${URL}'/api/devices?limit=9999&offset=0' \
@@ -102,3 +116,11 @@ echo '<h2>Passive devices</h2>' >> .devices.html
 jq --raw-output -f devices_to_html.jq ${DATA_DEV_FOLDER}.devices.json | grep -v $TODAY >> .devices.html
 
 echo '</body></html>' >> .devices.html
+
+# ./get_id_devicesChange.sh
+
+
+for ((i=0; i<${#DID[@]}; i++))
+do
+  ./change_url_orgaID.sh ${DID[$i]} ${OID[$i]}
+done

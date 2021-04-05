@@ -53,8 +53,8 @@ echo "generate_sparkline_packets : \n ========== \n ========== \n "
 
 for g in $GATEWAYS; do
 
-    packet_received=$(jq -r '.result | map(.rxPacketsReceivedOK) | join(",")' ${DATA_GAT_FOLDER}.gateway-${g}_stats.json)
-
+    packet_received=$(jq -r '.result | map(.rxPacketsReceivedOK|tostring) | join(",")' ${DATA_GAT_FOLDER}.gateway-${g}_stats.json)
+    
     jq --raw-output "(  \"<li><a \" 
         + \"href='https://lns.campusiot.imag.fr/#/organizations/\(.gateway.organizationID)/gateways/\(.gateway.id)'\" + \">\" + .gateway.id + \"</a>: \"
         + .gateway.name + \" - (org \" + .gateway.organizationID + \") - \"
@@ -67,7 +67,7 @@ done
 echo '<h2>Passive gateways</h2>' >>.gateways.html
 for g in $GATEWAYS; do
 
-    packet_received=$(jq -r '.result | map(.rxPacketsReceivedOK) | join(",")' ${DATA_GAT_FOLDER}.gateway-${g}_stats.json)
+    packet_received=$(jq -r '.result | map(.rxPacketsReceivedOK|tostring) | join(",")' ${DATA_GAT_FOLDER}.gateway-${g}_stats.json)
 
     jq --raw-output "(  \"<li><a \" 
         + \"href='https://lns.campusiot.imag.fr/#/organizations/\(.gateway.organizationID)/gateways/\(.gateway.id)'\" + \">\" + .gateway.id + \"</a>: \"

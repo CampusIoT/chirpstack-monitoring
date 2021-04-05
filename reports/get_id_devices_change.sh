@@ -47,7 +47,7 @@ done
 
 
 #On stock les ids des devices d'hier
-ids_2=$(jq --raw-output ".result[] | .id" ${DATA_DEV_FOLDER}last_devices_states.json)
+ids_2=$(jq --raw-output ".result[] | .id" ${DATA_DEV_FOLDER}.last_devices_states.json)
 id_2=()
 i=0
 for ID in $ids_2
@@ -57,7 +57,7 @@ do
 done
 
 #On stock les states des devices d'hier
-full_state=$(jq --raw-output ".result[] | .lastState" ${DATA_DEV_FOLDER}last_devices_states.json)
+full_state=$(jq --raw-output ".result[] | .lastState" ${DATA_DEV_FOLDER}.last_devices_states.json)
 states_2=()
 j=0
 for s in $full_state
@@ -90,25 +90,24 @@ do
     done
     if [[ ${date[$i]} != "null" ]]
     then
-        echo "on change la date ici"
-        # tmp=$(grep ${id[$i]} < .devices.html)
-        # dateFromNow=$(node change_date_momentjs.js ${date[$i]})
-        # replacement=${tmp/${date[$i]}/"$dateFromNow"}
-        # sed -i "/${id[$i]}/c $replacement" .devices.html
+        tmp=$(grep ${id[$i]} < .devices.html)
+        dateFromNow=$(node change_date_momentjs.js ${date[$i]})
+        replacement=${tmp/${date[$i]}/"$dateFromNow"}
+        sed -i "/${id[$i]}/c $replacement" .devices.html
     fi
 done
 
 #On met à jour les states des devices pour le prochain jour
 echo "{
   \"totalCount\": \"${#id[@]}\",
-  \"result\": [" > ${DATA_DEV_FOLDER}last_devices_states.json
+  \"result\": [" > ${DATA_DEV_FOLDER}.last_devices_states.json
 
 for (( i=0; i<$((${#id[@]}-1)); i++ ))
 do
     echo "    {
       \"id\": \"${id[$i]}\",
       \"lastState\": \"${state[$i]}\"
-    }," >> ${DATA_DEV_FOLDER}last_devices_states.json
+    }," >> ${DATA_DEV_FOLDER}.last_devices_states.json
 done
 
 echo "    {
@@ -116,4 +115,4 @@ echo "    {
       \"lastState\": \"${state[$((${#id[@]}-1))]}\"
     }
   ]
-}" >> ${DATA_DEV_FOLDER}last_devices_states.json
+}" >> ${DATA_DEV_FOLDER}.last_devices_states.json

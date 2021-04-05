@@ -45,26 +45,27 @@ do
     fi
 done
 
-#We store yesterday gateways ids
-ids_2=$(jq --raw-output ".result[] | .id" ${DATA_GAT_FOLDER}.last_gateways_states.json)
-id_2=()
-i=0
-for ID in $ids_2
-do
-    id_2[$i]=$ID
-    i=$((i+1))
-done
+if [ -f "${DATA_GAT_FOLDER}.last_gateways_states.json" ]; then
+    #We store yesterday gateways ids
+    ids_2=$(jq --raw-output ".result[] | .id" ${DATA_GAT_FOLDER}.last_gateways_states.json)
+    id_2=()
+    i=0
+    for ID in $ids_2
+    do
+        id_2[$i]=$ID
+        i=$((i+1))
+    done
 
-#We store yesterday gateways states
-full_state=$(jq --raw-output ".result[] | .lastState" ${DATA_GAT_FOLDER}.last_gateways_states.json)
-states_2=()
-j=0
-for s in $full_state
-do
-    state_2[$j]=$s
-    j=$((j+1))
-done
-
+    #We store yesterday gateways states
+    full_state=$(jq --raw-output ".result[] | .lastState" ${DATA_GAT_FOLDER}.last_gateways_states.json)
+    states_2=()
+    j=0
+    for s in $full_state
+    do
+        state_2[$j]=$s
+        j=$((j+1))
+    done
+fi
 
 #We compare today and yesterday gateways states
 for (( i=0; i<${#id[@]}; i++ ))

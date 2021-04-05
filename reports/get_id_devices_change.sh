@@ -46,26 +46,27 @@ do
 done
 
 
-#On stock les ids des devices d'hier
-ids_2=$(jq --raw-output ".result[] | .id" ${DATA_DEV_FOLDER}.last_devices_states.json)
-id_2=()
-i=0
-for ID in $ids_2
-do
-    id_2[$i]=$ID
-    i=$((i+1))
-done
+if [ -f "${DATA_DEV_FOLDER}.last_devices_states.json" ]; then
+    #On stock les ids des devices d'hier
+    ids_2=$(jq --raw-output ".result[] | .id" ${DATA_DEV_FOLDER}.last_devices_states.json)
+    id_2=()
+    i=0
+    for ID in $ids_2
+    do
+        id_2[$i]=$ID
+        i=$((i+1))
+    done
 
-#On stock les states des devices d'hier
-full_state=$(jq --raw-output ".result[] | .lastState" ${DATA_DEV_FOLDER}.last_devices_states.json)
-states_2=()
-j=0
-for s in $full_state
-do
-    state_2[$j]=$s
-    j=$((j+1))
-done
-
+    #On stock les states des devices d'hier
+    full_state=$(jq --raw-output ".result[] | .lastState" ${DATA_DEV_FOLDER}.last_devices_states.json)
+    states_2=()
+    j=0
+    for s in $full_state
+    do
+        state_2[$j]=$s
+        j=$((j+1))
+    done
+fi
 
 #On compare les states des devices d'aujourd'hui et hier
 for (( i=0; i<${#id[@]}; i++ ))

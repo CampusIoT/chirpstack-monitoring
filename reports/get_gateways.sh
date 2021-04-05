@@ -78,4 +78,4 @@ echo "generate html (with sparkline)"
 ./gateways_to_html.sh $GATEWAYS_LEN $GATEWAYS $TODAY
 
 echo "Passive Active Check"
-# ./get_id_gatewaysChange.sh
+./get_id_gateways_change.sh

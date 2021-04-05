@@ -117,7 +117,7 @@ jq --raw-output -f devices_to_html.jq ${DATA_DEV_FOLDER}.devices.json | grep -v 
 
 echo '</body></html>' >> .devices.html
 
-# ./get_id_devicesChange.sh
+./get_id_devices_change.sh
 
 
 for ((i=0; i<${#DID[@]}; i++))

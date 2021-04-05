@@ -1,1 +1,1 @@
-data/applications files
+data/configurations files

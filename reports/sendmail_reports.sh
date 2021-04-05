@@ -6,14 +6,16 @@
 # crontab entry
 # TODO    /bin/bash
 
-# TODO get TO for the .config.json
-#TO="XX.XX@univ-grenoble-alpes.fr YY.YY@univ-grenoble-alpes.fr"
-TO="kevyung24@gmail.com"
+# DATA REPOSITORY
+DATA_CONFIG_FOLDER="data/configuration/"
+
+TO=$(jq --raw-output ".report_email_to" ${DATA_CONFIG_FOLDER}.config.json)
 SUBJECT="Monitoring Report"
 CONTENT_TYPE="Content-type: text/html"
 
-#mail -a "$CONTENT_TYPE" -s "$SUBJECT" -u monitoring $TO <.gateways.html
-#mail -a "$CONTENT_TYPE" -s "$SUBJECT" -u monitoring $TO <.devices.html
+mail -a "$CONTENT_TYPE" -s "$SUBJECT" -u monitoring $TO <.gateways.html
+mail -a "$CONTENT_TYPE" -s "$SUBJECT" -u monitoring $TO <.devices.html
 
-mailx -a "$CONTENT_TYPE" -s "$SUBJECT" <.gateways.html "$TO"
-#mail -s "Test" kevyung24@gmail.com
+# mailx -a "$CONTENT_TYPE" -s "$SUBJECT" <.gateways.html "$TO"
+
+echo "mail sended"

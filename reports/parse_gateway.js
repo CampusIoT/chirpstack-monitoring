@@ -4,7 +4,6 @@ const fs = require('fs');
 const moment = require('moment');
 
 var now = new Date();
-
 try {
     const data = fs.readFileSync(argv[2], 'utf8');
 
@@ -20,7 +19,7 @@ try {
 var name = g.gateway.name;
 
     var owner_email = g.gateway.tags.owner_email;
-    var owner_email_cc = d.device.tags.owner_email_cc;
+    var owner_email_cc = d.device.tags.owner_email_cc; //todo : get device (d doesn't exist)
 
     var lastSeenAt = g.lastSeenAt;
 

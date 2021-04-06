@@ -90,7 +90,7 @@ if ! [ -x "$(command -v phantomjs)" ]; then
 fi
 
 package='graceful-fs'
-if [ `npm list | grep -c $package` -eq 0 ]; then
+if [ `npm list --silent | grep -c $package` -eq 0 ]; then
     echo 'graceful-fs is not installed. Installing graceful-fs ...'
     npm install "webshot"
     npm install $package

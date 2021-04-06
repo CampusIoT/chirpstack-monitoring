@@ -11,7 +11,7 @@
 
 # Installation
 package='moment'
-if [ `npm list | grep -c $package` -eq 0 ]; then
+if [ `npm list --silent | grep -c $package` -eq 0 ]; then
     echo 'momentjs is not installed. Installing momentjs ...'
     npm install $package
 fi

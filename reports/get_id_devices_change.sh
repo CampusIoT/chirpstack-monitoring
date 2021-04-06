@@ -6,14 +6,12 @@
 # Usage:        runned by get_devices.sh
 # Create by:    CampusIoT Dev Team, 2021 - Copyright (C) CampusIoT,  - All Rights Reserved
 # -------------------------------------------------
-# Version:      1.0
-# -------------------------------------------------
-# Bug:
+# Milestone: Version 2021
 # -------------------------------------------------
 
 # Installation
 package='moment'
-if [ `npm list -g | grep -c $package` -eq 0 ]; then
+if [ `npm list | grep -c $package` -eq 0 ]; then
     echo 'momentjs is not installed. Installing momentjs ...'
     npm install $package
 fi

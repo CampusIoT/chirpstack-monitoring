@@ -1,17 +1,12 @@
 #!/bin/bash
 
-# Copyright (C) CampusIoT,  - All Rights Reserved
-# Written by CampusIoT Dev Team, 2016-2021
-
 # -------------------------------------------------
 # Description:  Get gateways 
 # List Command: x
 # Usage:        runned by generate_reports.sh
-# Create by:    CampusIoT Dev Team, 2021 - Copyright (C) CampusIoT,  - All Rights Reserved
+# Create by:    CampusIoT Dev Team, 20162021 - Copyright (C) CampusIoT,  - All Rights Reserved
 # -------------------------------------------------
-# Version:      1.0
-# -------------------------------------------------
-# Bug:
+# Milestone: Version 2021
 # -------------------------------------------------
 
 # Parameters
@@ -95,7 +90,7 @@ if ! [ -x "$(command -v phantomjs)" ]; then
 fi
 
 package='graceful-fs'
-if [ `npm list -g | grep -c $package` -eq 0 ]; then
+if [ `npm list | grep -c $package` -eq 0 ]; then
     echo 'graceful-fs is not installed. Installing graceful-fs ...'
     npm install "webshot"
     npm install $package

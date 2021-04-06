@@ -9,7 +9,7 @@
 # Usage:        should be runned by generate_reports.sh
 # Create by:    CampusIoT Dev Team, 2021 - Copyright (C) CampusIoT,  - All Rights Reserved
 # -------------------------------------------------
-# Version:      1.0
+# Milestone: Version 2021
 # -------------------------------------------------
 
 # crontab entry

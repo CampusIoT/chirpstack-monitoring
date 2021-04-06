@@ -90,10 +90,22 @@ echo "Passive Active Check"
 
 # Installation
 if ! [ -x "$(command -v phantomjs)" ]; then
-  echo "Missings libs to generate sparkline as a png image. Check out README.md of reports"
-  echo "We are skipping the generation of the picture."
-else 
-  # Generate an image of the page html with sparkline
-  node generate_sparkline_image.js
+  echo 'phantomjs is not installed. Installing phantomjs ...'
+  sudo apt-get install -y phantomjs
 fi
 
+package='graceful-js'
+if [ `npm list -g | grep -c $package` -eq 0 ]; then
+    echo 'graceful-js is not installed. Installing graceful-js ...'
+    npm install "webshot"
+    npm install $package
+fi
+
+package='graceful-js'
+if [ `npm list -g | grep -c $package` -eq 0 ]; then
+    echo 'graceful-js is not installed. Installing graceful-js ...'
+    npm install $package
+fi
+
+# Generate an image of the page html with sparkline
+node generate_sparkline_image.js

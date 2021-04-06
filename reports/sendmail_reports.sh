@@ -36,7 +36,7 @@ ATTACHMENT="../images/operators.png"
 mail -a "$CONTENT_TYPE_HTML" -s "$SUBJECT" -u monitoring $TO < ${devices_html}
 
 if ! [ -f "${devices_html}" ]; then 
-    # if there was a problem during the installation of npm when generating the screenshot, we generate gateways email without the attachment.
+    # if there was a problem when generating the screenshot and this one doesn't exists, we generate gateways email without the attachment.
     mail -a "$CONTENT_TYPE" -s "$SUBJECT" -u monitoring $TO <${gateways_without_spark_html}
 else 
     # we generate email gateways with an attachment.

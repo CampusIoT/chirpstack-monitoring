@@ -11,7 +11,12 @@
 # Bug:
 # -------------------------------------------------
 
-
+# Installation
+package='moment'
+if [ `npm list -g | grep -c $package` -eq 0 ]; then
+    echo 'momentjs is not installed. Installing momentjs ...'
+    npm install $package
+fi
 
 TODAY="$(date +"%Y-%m-%d")"
 

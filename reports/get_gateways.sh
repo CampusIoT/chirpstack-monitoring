@@ -88,5 +88,12 @@ echo "Passive Active Check"
 ./get_id_gateways_change.sh ".gateways.html"
 ./get_id_gateways_change.sh ".gateways_without_sparkline.html"
 
-# Generate an image of the page html with sparkline
-node generate_sparkline_image.js
+# Installation
+if ! [ -x "$(command -v phantomjs)" ]; then
+  echo "Missings libs to generate sparkline as a png image. Check out README.md of reports"
+  echo "We are skipping the generation of the picture."
+else 
+  # Generate an image of the page html with sparkline
+  node generate_sparkline_image.js
+fi
+

@@ -34,29 +34,34 @@ CONTENT_TYPE_IMG="Content-type: image/png"
 ATTACHMENT="../images/operators.png"
 
 mail -a "$CONTENT_TYPE_HTML" -s "$SUBJECT" -u monitoring $TO < ${devices_html}
-# mail -a "$CONTENT_TYPE" -s "$SUBJECT" -u monitoring $TO <${gateways_without_spark_html} #générée avec pièce jointe dorénavant. (voir ci-dessous)
 
-IMAGE="sparkline_report.png"
-IMAGE_LOC="${DATA_IMAGES_FOLDER}${IMAGE}"
+if ! [ -f "${devices_html}" ]; then 
+    # if there was a problem during the installation of npm when generating the screenshot, we generate gateways email without the attachment.
+    mail -a "$CONTENT_TYPE" -s "$SUBJECT" -u monitoring $TO <${gateways_without_spark_html}
+else 
+    # we generate email gateways with an attachment.
+    IMAGE="sparkline_report.png"
+    IMAGE_LOC="${DATA_IMAGES_FOLDER}${IMAGE}"
 
-outputFile="${gateways_without_spark_html}"  
-(
-echo "To: $TO"
-echo "Subject: $SUBJECT"
-echo "Mime-Version: 1.0"
-echo "$CONTENT_TYPE_MUL"
-echo "Content-Disposition: inline" 
-echo "" 
-echo "--GvXjxJ+pjyke8COw" 
-echo "$CONTENT_TYPE_HTML"
-echo "Content-Disposition: inline"
-cat $outputFile
-echo "" 
-echo "--GvXjxJ+pjyke8COw"
-echo "$CONTENT_TYPE_IMG"
-echo "Content-Transfer-Encoding: BASE64"
-echo "Content-ID: <envoie sparkline>"
-echo "Content-Disposition: attachement; filename=${IMAGE}"
-echo "" 
-cat $IMAGE_LOC | base64
-) | mail -t
+    outputFile="${gateways_without_spark_html}"  
+    (
+    echo "To: $TO"
+    echo "Subject: $SUBJECT"
+    echo "Mime-Version: 1.0"
+    echo "$CONTENT_TYPE_MUL"
+    echo "Content-Disposition: inline" 
+    echo "" 
+    echo "--GvXjxJ+pjyke8COw" 
+    echo "$CONTENT_TYPE_HTML"
+    echo "Content-Disposition: inline"
+    cat $outputFile
+    echo "" 
+    echo "--GvXjxJ+pjyke8COw"
+    echo "$CONTENT_TYPE_IMG"
+    echo "Content-Transfer-Encoding: BASE64"
+    echo "Content-ID: <envoie sparkline>"
+    echo "Content-Disposition: attachement; filename=${IMAGE}"
+    echo "" 
+    cat $IMAGE_LOC | base64
+    ) | mail -t
+fi

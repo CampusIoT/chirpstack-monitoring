@@ -20,7 +20,7 @@ DATA_ORG_FOLDER="data/organizations/"
 DATA_APP_FOLDER="data/applications/"
 DATA_GAT_FOLDER="data/gateways/"
 DATA_DEV_FOLDER="data/devices/"
-
+DATA_IMAGES_FOLDER="data/images/"
 
 
 rm -f ${DATA_CONFIG_FOLDER}*.token.json
@@ -31,3 +31,6 @@ rm -f ${DATA_GAT_FOLDER}.gateway-*
 rm -f ${DATA_DEV_FOLDER}.devices.*
 rm -f ${DATA_DEV_FOLDER}.application*
 rm -f ${DATA_APP_FOLDER}.organization*
+rm -f ${DATA_APP_FOLDER}.organization*
+rm -f ${DATA_IMAGES_FOLDER}sparkline_report.png
+

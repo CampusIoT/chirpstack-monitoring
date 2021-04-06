@@ -94,16 +94,10 @@ if ! [ -x "$(command -v phantomjs)" ]; then
   sudo apt-get install -y phantomjs
 fi
 
-package='graceful-js'
+package='graceful-fs'
 if [ `npm list -g | grep -c $package` -eq 0 ]; then
-    echo 'graceful-js is not installed. Installing graceful-js ...'
+    echo 'graceful-fs is not installed. Installing graceful-fs ...'
     npm install "webshot"
-    npm install $package
-fi
-
-package='graceful-js'
-if [ `npm list -g | grep -c $package` -eq 0 ]; then
-    echo 'graceful-js is not installed. Installing graceful-js ...'
     npm install $package
 fi
 

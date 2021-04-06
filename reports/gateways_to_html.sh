@@ -45,7 +45,37 @@ echo ' - ' >>.gateways.html
 TZ=GMT date +"%Y-%m-%d %T %Z" >>.gateways.html
 echo '</p>' >>.gateways.html
 
-# 3.Generate Active Gateways
+# Create a copy of .gateways.html to get one with sparkline data, and one without them
+cp .gateways.html .gateways_without_sparkline.html
+
+# 3.Generate Active Gateways without sparkline data
+echo '<h2>Active gateways</h2>' >>.gateways_without_sparkline.html
+
+echo "generate_sparkline_packets : \n ========== \n ========== \n "
+
+for g in $GATEWAYS; do
+    jq --raw-output "(  \"<li><a \" 
+        + \"href='https://lns.campusiot.imag.fr/#/organizations/\(.gateway.organizationID)/gateways/\(.gateway.id)'\" + \">\" + .gateway.id + \"</a>: \"
+        + .gateway.name + \" - (org \" + .gateway.organizationID + \") - \"
+        + .lastSeenAt
+    + \"</li>\" )" ${DATA_GAT_FOLDER}.gateway-${g}.json | grep $TODAY >>.gateways_without_sparkline.html
+done
+
+# 4.Generate Passive Gateways without sparkline data
+echo '<h2>Passive gateways</h2>' >>.gateways_without_sparkline.html
+for g in $GATEWAYS; do
+
+    jq --raw-output "(  \"<li><a \" 
+        + \"href='https://lns.campusiot.imag.fr/#/organizations/\(.gateway.organizationID)/gateways/\(.gateway.id)'\" + \">\" + .gateway.id + \"</a>: \"
+        + .gateway.name + \" - (org \" + .gateway.organizationID + \") - \"
+        + .lastSeenAt 
+    + \"</li>\" )" ${DATA_GAT_FOLDER}.gateway-${g}.json | grep -v $TODAY >>.gateways_without_sparkline.html
+
+done
+
+echo '</body></html>' >>.gateways_without_sparkline.html
+
+# 5.Generate Active Gateways with sparkline data
 echo '<h2>Active gateways</h2>' >>.gateways.html
 
 echo "generate_sparkline_packets : \n ========== \n ========== \n "
@@ -62,7 +92,7 @@ for g in $GATEWAYS; do
     + \"</li>\" )" ${DATA_GAT_FOLDER}.gateway-${g}.json | grep $TODAY >>.gateways.html
 done
 
-# 4.Generate Passive Gateways
+# 6.Generate Passive Gateways with sparkline data
 echo '<h2>Passive gateways</h2>' >>.gateways.html
 for g in $GATEWAYS; do
 

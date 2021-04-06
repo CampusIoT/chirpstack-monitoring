@@ -81,8 +81,11 @@ echo "get details for $g"
 ./get_gateway_stats.sh $TOKEN $g $TODAY
 done
 
-echo "generate html (with sparkline)"
+echo "generate html (2 copies : one with sparkline and one without sparkline)"
 ./gateways_to_html.sh $GATEWAYS_LEN $GATEWAYS $TODAY
 
 echo "Passive Active Check"
 ./get_id_gateways_change.sh
+
+# Generate an image of the page html with sparkline
+node download_sparkline.js

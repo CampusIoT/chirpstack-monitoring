@@ -3,9 +3,16 @@
 # Copyright (C) CampusIoT,  - All Rights Reserved
 # Written by CampusIoT Dev Team, 2016-2021
 
-# ------------------------------------------------
-# Get getaways
-# ------------------------------------------------
+# -------------------------------------------------
+# Description:  Get gateways 
+# List Command: x
+# Usage:        runned by generate_reports.sh
+# Create by:    CampusIoT Dev Team, 2021 - Copyright (C) CampusIoT,  - All Rights Reserved
+# -------------------------------------------------
+# Version:      1.0
+# -------------------------------------------------
+# Bug:
+# -------------------------------------------------
 
 # Parameters
 if [[ $# -ne 1 ]] ; then

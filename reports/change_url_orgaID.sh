@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# -------------------------------------------------
+# Description:  add organization ID into URL 
+# List Command: x
+# Usage:        runned by get_devices.sh
+# Create by:    CampusIoT Dev Team, 2021 - Copyright (C) CampusIoT,  - All Rights Reserved
+# -------------------------------------------------
+# Version:      1.0
+# -------------------------------------------------
+# Bug:
+# -------------------------------------------------
+
 # Parameters
 if [[ $# -ne 2 ]] ; then
     echo "Usage: $0 DID OID"

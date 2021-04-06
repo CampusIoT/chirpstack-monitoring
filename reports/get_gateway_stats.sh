@@ -3,9 +3,16 @@
 # Copyright (C) CampusIoT,  - All Rights Reserved
 # Written by CampusIoT Dev Team, 2016-2021
 
-# ------------------------------------------------
-# Get the stats of a get gateway
-# ------------------------------------------------
+# -------------------------------------------------
+# Description:  Get the stats of a gateway 
+# List Command: x
+# Usage:        runned by get_gateways.sh
+# Create by:    CampusIoT Dev Team, 2021 - Copyright (C) CampusIoT,  - All Rights Reserved
+# -------------------------------------------------
+# Version:      1.0
+# -------------------------------------------------
+# Bug:
+# -------------------------------------------------
 
 # Parameters
 if [[ $# -ne 3 ]] ; then

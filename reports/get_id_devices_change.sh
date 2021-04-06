@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# -------------------------------------------------
+# Description:  search for changement of devices state and update HTML 
+# List Command: x
+# Usage:        runned by get_devices.sh
+# Create by:    CampusIoT Dev Team, 2021 - Copyright (C) CampusIoT,  - All Rights Reserved
+# -------------------------------------------------
+# Version:      1.0
+# -------------------------------------------------
+# Bug:
+# -------------------------------------------------
+
 TODAY="$(date +"%Y-%m-%d")"
 
 # DATA REPOSITORY

@@ -3,6 +3,17 @@
 # Copyright (C) CampusIoT,  - All Rights Reserved
 # Written by CampusIoT Dev Team, 2016-2021
 
+# -------------------------------------------------
+# Description:  Send mails containing reports
+# List Command: x
+# Usage:        should be runned by generate_reports.sh
+# Create by:    CampusIoT Dev Team, 2021 - Copyright (C) CampusIoT,  - All Rights Reserved
+# -------------------------------------------------
+# Version:      1.0
+# -------------------------------------------------
+# Bug:
+# -------------------------------------------------
+
 # crontab entry
 # TODO    /bin/bash
 

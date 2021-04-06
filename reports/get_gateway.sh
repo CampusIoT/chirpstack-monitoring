@@ -3,9 +3,16 @@
 # Copyright (C) CampusIoT,  - All Rights Reserved
 # Written by CampusIoT Dev Team, 2016-2021
 
-# ------------------------------------------------
-# Get the detail of a getaway
-# ------------------------------------------------
+# -------------------------------------------------
+# Description:  Get the detail of a gateway 
+# List Command: x
+# Usage:        runned by get_gateways.sh
+# Create by:    CampusIoT Dev Team, 2021 - Copyright (C) CampusIoT,  - All Rights Reserved
+# -------------------------------------------------
+# Version:      1.0
+# -------------------------------------------------
+# Bug:
+# -------------------------------------------------
 
 # Parameters
 if [[ $# -ne 2 ]] ; then

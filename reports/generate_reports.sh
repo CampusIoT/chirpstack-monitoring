@@ -3,9 +3,16 @@
 # Copyright (C) CampusIoT,  - All Rights Reserved
 # Written by CampusIoT Dev Team, 2016-2021
 
-# ------------------------------------------------
-# Generate the reports
-# ------------------------------------------------
+# -------------------------------------------------
+# Description:  Generate gateways and devices reports
+# List Command: x
+# Usage:        execute ./generate_reports.sh
+# Create by:    CampusIoT Dev Team, 2021 - Copyright (C) CampusIoT,  - All Rights Reserved
+# -------------------------------------------------
+# Version:      1.0
+# -------------------------------------------------
+# Bug:
+# -------------------------------------------------
 
 # DATA REPOSITORY
 DATA_CONFIG_FOLDER="data/configuration/"

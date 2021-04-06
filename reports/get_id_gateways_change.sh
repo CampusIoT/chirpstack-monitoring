@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# -------------------------------------------------
+# Description:  Search for changement of gateways states and updtae HTML 
+# List Command: x
+# Usage:        runned by get_gateways.sh
+# Create by:    CampusIoT Dev Team, 2021 - Copyright (C) CampusIoT,  - All Rights Reserved
+# -------------------------------------------------
+# Version:      1.0
+# -------------------------------------------------
+# Bug:
+# -------------------------------------------------
+
 TODAY="$(date +"%Y-%m-%d")"
 
 # DATA REPOSITORY
@@ -14,10 +25,7 @@ id=($ids)
 dates=$(jq --raw-output ".result[] | .lastSeenAt" ${DATA_GAT_FOLDER}.gateways.json)
 date=()
 date=($dates)
-state=()
-full_date=()
-d=()
-for (( i=0; i<${#date[@]}; i++ ))
+state=()nerate_reports i++ ))
 do
     if [[ ${date[$i]} == "null" ]]
     then

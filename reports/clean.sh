@@ -3,6 +3,17 @@
 # Copyright (C) CampusIoT,  - All Rights Reserved
 # Written by CampusIoT Dev Team, 2016-2021
 
+# -------------------------------------------------
+# Description:  Delete unnecessary files 
+# List Command: x
+# Usage:        executed by ./clean.sh
+# Create by:    CampusIoT Dev Team, 2021 - Copyright (C) CampusIoT,  - All Rights Reserved
+# -------------------------------------------------
+# Version:      1.0
+# -------------------------------------------------
+# Bug:
+# -------------------------------------------------
+
 # DATA REPOSITORY
 DATA_CONFIG_FOLDER="data/configuration/"
 DATA_ORG_FOLDER="data/organizations/"

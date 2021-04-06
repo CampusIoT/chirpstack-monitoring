@@ -3,10 +3,6 @@
 # Copyright (C) CampusIoT,  - All Rights Reserved
 # Written by CampusIoT Dev Team, 2016-2021
 
-# ------------------------------------------------
-# Get the detail of a getaway
-# ------------------------------------------------
-
 # Parameters
 if [[ $# -ne 2 ]] ; then
     echo "Usage: $0 JWT GWID"

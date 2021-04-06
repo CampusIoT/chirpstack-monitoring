@@ -11,10 +11,14 @@
 # Bug:
 # -------------------------------------------------
 
+
+
 TODAY="$(date +"%Y-%m-%d")"
 
 # DATA REPOSITORY
 DATA_GAT_FOLDER="data/gateways/"
+DATA_HTML_FOLDER="data/generated_files/"
+gateways_html="${DATA_HTML_FOLDER}$1"
 
 #We store gateways' ids of the present day
 ids=$(jq --raw-output ".result[] | .id" ${DATA_GAT_FOLDER}.gateways.json)
@@ -25,7 +29,10 @@ id=($ids)
 dates=$(jq --raw-output ".result[] | .lastSeenAt" ${DATA_GAT_FOLDER}.gateways.json)
 date=()
 date=($dates)
-state=()nerate_reports i++ ))
+state=()
+full_date=()
+d=()
+for (( i=0; i<${#date[@]}; i++ ))
 do
     if [[ ${date[$i]} == "null" ]]
     then
@@ -86,22 +93,22 @@ do
             then
                 if [[ "${state[$i]}" == "active" ]]
                 then
-                    tmp=$(grep ${id[$i]} < .gateways.html)
+                    tmp=$(grep ${id[$i]} < ${gateways_html})
                     replacement=${tmp/"<li>"/"<li style="color:green">"}
                 else
-                    tmp=$(grep ${id[$i]} < .gateways.html)
+                    tmp=$(grep ${id[$i]} < ${gateways_html})
                     replacement=${tmp/"<li>"/"<li style="color:red">"}
                 fi
-                sed -i "/${id[$i]}/c $replacement" .gateways.html
+                sed -i "/${id[$i]}/c $replacement" ${gateways_html}
             fi
         fi
     done
     if [[ ${date[$i]} != "null" ]]
     then
-        tmp=$(grep ${id[$i]} < .gateways.html)
+        tmp=$(grep ${id[$i]} < "${gateways_html}")
         dateFromNow=$(node change_date_momentjs.js ${date[$i]})
         replacement=${tmp/${date[$i]}/"$dateFromNow"}
-        sed -i "/${id[$i]}/c $replacement" .gateways.html
+        sed -i "/${id[$i]}/c $replacement" ${gateways_html}
     fi
 done
 

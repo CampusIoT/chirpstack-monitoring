@@ -55,8 +55,9 @@ URL=https://lns.campusiot.imag.fr:$PORT
 DATA_APP_FOLDER="data/applications/"
 DATA_ORG_FOLDER="data/organizations/"
 DATA_DEV_FOLDER="data/devices/"
+DATA_HTML_FOLDER="data/generated_files/"
+devices_html="${DATA_HTML_FOLDER}.devices.html"
 
-# Operations
 # Operations
 #CURL="curl --verbose"
 CURL="curl -s --insecure"
@@ -105,29 +106,29 @@ sed -i "/"totalCount"/c $replacement" ${DATA_DEV_FOLDER}.devices.json
 
 
 
-echo '<html><head><title>CampusIoT LNS :: Devices</title></head><body style="font-family:verdana;"><h1>CampusIoT LNS :: Devices</h1>' > .devices.html
+echo '<html><head><title>CampusIoT LNS :: Devices</title></head><body style="font-family:verdana;"><h1>CampusIoT LNS :: Devices</h1>' > ${devices_html}
 
 TODAY=$(date +"%Y-%m-%d")
-echo '<p>generated at ' >> .devices.html
-date +"%Y-%m-%d %T %Z" >> .devices.html
-echo ' - ' >> .devices.html
-TZ=GMT date +"%Y-%m-%d %T %Z" >> .devices.html
-echo '</p>' >> .devices.html
+echo '<p>generated at ' >> ${devices_html}
+date +"%Y-%m-%d %T %Z" >> ${devices_html}
+echo ' - ' >> ${devices_html}
+TZ=GMT date +"%Y-%m-%d %T %Z" >> ${devices_html}
+echo '</p>' >> ${devices_html}
 
-echo '<h2>Active devices</h2>' >> .devices.html
+echo '<h2>Active devices</h2>' >> ${devices_html}
 
-jq --raw-output -f devices_to_html.jq ${DATA_DEV_FOLDER}.devices.json | grep $TODAY >> .devices.html
+jq --raw-output -f devices_to_html.jq ${DATA_DEV_FOLDER}.devices.json | grep $TODAY >> ${devices_html}
 
-echo '<h2>Passive devices</h2>' >> .devices.html
+echo '<h2>Passive devices</h2>' >> ${devices_html}
 
-jq --raw-output -f devices_to_html.jq ${DATA_DEV_FOLDER}.devices.json | grep -v $TODAY >> .devices.html
+jq --raw-output -f devices_to_html.jq ${DATA_DEV_FOLDER}.devices.json | grep -v $TODAY >> ${devices_html}
 
-echo '</body></html>' >> .devices.html
+echo '</body></html>' >> ${devices_html}
 
 ./get_id_devices_change.sh
 
 
 for ((i=0; i<${#DID[@]}; i++))
 do
-  ./change_url_orgaID.sh ${DID[$i]} ${OID[$i]}
+  ./update_url_orga_id.sh ${DID[$i]} ${OID[$i]}
 done

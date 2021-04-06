@@ -17,6 +17,8 @@ TODAY="$(date +"%Y-%m-%d")"
 
 # DATA REPOSITORY
 DATA_DEV_FOLDER="data/devices/"
+DATA_HTML_FOLDER="data/generated_files/"
+devices_html="${DATA_HTML_FOLDER}.devices.html"
 
 #We store devices' ids of the present day
 ids=$(jq --raw-output ".result[] | select(.!=null) | .devEUI" ${DATA_DEV_FOLDER}.devices.json)
@@ -91,22 +93,22 @@ do
             then
                 if [[ "${state[$i]}" == "active" ]]
                 then
-                    tmp=$(grep ${id[$i]} < .devices.html)
+                    tmp=$(grep ${id[$i]} < ${devices_html})
                     replacement=${tmp/"<li>"/"<li style="color:green">"}
                 else
-                    tmp=$(grep ${id[$i]} < .devices.html)
+                    tmp=$(grep ${id[$i]} < ${devices_html})
                     replacement=${tmp/"<li>"/"<li style="color:red">"}
                 fi
-                sed -i "/${id[$i]}/c $replacement" .devices.html
+                sed -i "/${id[$i]}/c $replacement" ${devices_html}
             fi
         fi
     done
     if [[ ${date[$i]} != "null" ]]
     then
-        tmp=$(grep ${id[$i]} < .devices.html)
+        tmp=$(grep ${id[$i]} < "${devices_html}")
         dateFromNow=$(node change_date_momentjs.js ${date[$i]})
         replacement=${tmp/${date[$i]}/"$dateFromNow"}
-        sed -i "/${id[$i]}/c $replacement" .devices.html
+        sed -i "/${id[$i]}/c $replacement" ${devices_html}
     fi
 done
 

@@ -22,23 +22,24 @@
 # DATA REPOSITORY
 DATA_CONFIG_FOLDER="data/configuration/"
 DATA_IMAGES_FOLDER="data/images/"
+DATA_HTML_FOLDER="data/generated_files/"
+gateways_without_spark_html="${DATA_HTML_FOLDER}.gateways_without_sparkline.html"
+devices_html="${DATA_HTML_FOLDER}.devices.html"
 
 TO=$(jq --raw-output ".report_email_to" ${DATA_CONFIG_FOLDER}.config.json)
 SUBJECT="Monitoring Report"
 CONTENT_TYPE_HTML="Content-type: text/html"
 CONTENT_TYPE_MUL="Content-Type: multipart/mixed; boundary=\"GvXjxJ+pjyke8COw\""
 CONTENT_TYPE_IMG="Content-type: image/png"
-
-# CONTENT_TYPE="Content-type: multipart/mixed"
 ATTACHMENT="../images/operators.png"
 
-# mail -a "$CONTENT_TYPE" -s "$SUBJECT" -u monitoring $TO <.gateways.html #généré avec pièce jointe
-mail -a "$CONTENT_TYPE_HTML" -s "$SUBJECT" -u monitoring $TO <.devices.html
+mail -a "$CONTENT_TYPE_HTML" -s "$SUBJECT" -u monitoring $TO < ${devices_html}
+# mail -a "$CONTENT_TYPE" -s "$SUBJECT" -u monitoring $TO <${gateways_without_spark_html} #générée avec pièce jointe dorénavant. (voir ci-dessous)
 
 IMAGE="sparkline_report.png"
 IMAGE_LOC="${DATA_IMAGES_FOLDER}${IMAGE}"
 
-outputFile=".gateways.html"  
+outputFile="${gateways_without_spark_html}"  
 (
 echo "To: $TO"
 echo "Subject: $SUBJECT"

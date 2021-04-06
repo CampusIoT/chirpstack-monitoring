@@ -5,6 +5,6 @@ webshot('file:///home/blanquan/Bureau/2019-2022_Polytech/2emeAnnee/Tronc_Info/pr
     if (!err) {
         console.log("Screenshot taken!")
     } else {
-        console.log("Bug when generating screeenshot")
+        console.log("Bug when generating screeenshot with Sparkline")
     }
 });

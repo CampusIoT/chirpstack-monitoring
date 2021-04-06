@@ -49,7 +49,6 @@ DATA_CONFIG_FOLDER="data/configuration/"
 URL_SWAGGER=${URL}/swagger/api.swagger.json
 
 # Operations
-# Operations
 #CURL="curl --verbose"
 CURL="curl -s --insecure"
 #CURL="curl -s"

@@ -15,10 +15,12 @@ DATA_CONFIG_FOLDER="data/configuration/"
 USERNAME=$(jq --raw-output ".username" ${DATA_CONFIG_FOLDER}.credentials.json)
 PASSWORD=$(jq --raw-output ".password" ${DATA_CONFIG_FOLDER}.credentials.json)
 
+echo "-------- get_jwt.sh --------"
 JWT=$(./get_jwt.sh $USERNAME $PASSWORD)
 
+echo "-------- get_organizations.sh --------"
 ./get_organizations.sh $JWT
+echo "-------- get_gateways.sh --------"
 ./get_gateways.sh $JWT
+echo "-------- get_devices.sh --------"
 ./get_devices.sh $JWT
-
-# TODO send reports by email

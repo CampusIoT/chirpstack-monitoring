@@ -71,7 +71,7 @@ GATEWAYS=$(jq --raw-output ".result | sort_by(.lastSeenAt, .id) | reverse [] | (
 GATEWAYS_LEN=$(jq --raw-output ".totalCount" ${DATA_GAT_FOLDER}.gateways.json)
 for g in $GATEWAYS
 do
-echo "get details for $g"
+echo "get details for gateway $g (basic & stats informations)"
 ./get_gateway.sh $TOKEN $g
 ./get_gateway_stats.sh $TOKEN $g $TODAY
 done
@@ -79,7 +79,9 @@ done
 echo "generate html (2 copies : one with sparkline and one without sparkline)"
 ./generate_gateways_report.sh $GATEWAYS_LEN $GATEWAYS $TODAY
 
-echo "Passive Active Check"
+echo "comparing gateways states Passives and Actives of the report with the last report."
+echo -e "\t in green : gateways who was passive became active"
+echo -e "\t in red : gateways who was active became passive"
 ./get_id_gateways_change.sh ".gateways.html"
 ./get_id_gateways_change.sh ".gateways_without_sparkline.html"
 
@@ -97,4 +99,5 @@ if [ `npm list --silent | grep -c $package` -eq 0 ]; then
 fi
 
 # Generate an image of the page html with sparkline
+echo "Generate an image of the page html with sparkline"
 node generate_sparkline_image.js

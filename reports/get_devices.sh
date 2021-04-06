@@ -102,8 +102,9 @@ sed -i "/"totalCount"/c $replacement" ${DATA_DEV_FOLDER}.devices.json
 echo "generate devices.html"
 ./generate_devices_report.sh $TODAY
 
-
-
+echo "comparing devices states Passives and Actives of the report with the last report."
+echo -e "\t in green : devices who was passive became active"
+echo -e "\t in red : devices who was active became passive"
 ./get_id_devices_change.sh
 
 

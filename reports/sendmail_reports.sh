@@ -15,7 +15,7 @@
 # crontab entry
 # TODO    /bin/bash
 
-# ./decompose_gateways_sparkline.sh
+echo "-------- sendmail_reports.sh--------"
 
 # DATA REPOSITORY
 DATA_CONFIG_FOLDER="data/configuration/"
@@ -63,3 +63,5 @@ else
     cat $IMAGE_LOC | base64
     ) | mail -t
 fi
+
+echo "success sending emails to $TO"

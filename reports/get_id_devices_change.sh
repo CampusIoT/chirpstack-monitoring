@@ -11,17 +11,19 @@
 # Bug:
 # -------------------------------------------------
 
+#!/bin/bash
+
 TODAY="$(date +"%Y-%m-%d")"
 
 # DATA REPOSITORY
 DATA_DEV_FOLDER="data/devices/"
 
-#On stock les ids des devices d'aujourd'hui
+#We store devices' ids of the present day
 ids=$(jq --raw-output ".result[] | select(.!=null) | .devEUI" ${DATA_DEV_FOLDER}.devices.json)
 id=($ids)
 
 
-#On stock les dates de dernière activité des devices d'aujourd'hui
+#We store dates from the last activity of the devices from today
 dates=$(jq --raw-output ".result[] | select(.!=null) | .lastSeenAt" ${DATA_DEV_FOLDER}.devices.json)
 date=()
 date=($dates)
@@ -44,8 +46,7 @@ do
     fi
 done
 
-#On stock les states des devices d'aujourd'hui dans un tableau en regardant la date
-#de dernière activité des devices
+#We store states from today devices in an array by looking at last activity dates
 for (( i=0; i<${#d[@]}; i++ ))
 do
     if [[ "${d[$i]}" == "$TODAY" ]]
@@ -58,7 +59,7 @@ done
 
 
 if [ -f "${DATA_DEV_FOLDER}.last_devices_states.json" ]; then
-    #On stock les ids des devices d'hier
+    #We store yesterday devices ids
     ids_2=$(jq --raw-output ".result[] | .id" ${DATA_DEV_FOLDER}.last_devices_states.json)
     id_2=()
     i=0
@@ -68,7 +69,7 @@ if [ -f "${DATA_DEV_FOLDER}.last_devices_states.json" ]; then
         i=$((i+1))
     done
 
-    #On stock les states des devices d'hier
+    #We store yesterday devices states
     full_state=$(jq --raw-output ".result[] | .lastState" ${DATA_DEV_FOLDER}.last_devices_states.json)
     states_2=()
     j=0
@@ -79,7 +80,7 @@ if [ -f "${DATA_DEV_FOLDER}.last_devices_states.json" ]; then
     done
 fi
 
-#On compare les states des devices d'aujourd'hui et hier
+#We compare today and yesterday devices states
 for (( i=0; i<${#id[@]}; i++ ))
 do
     for (( j=0; j<${#id_2[@]}; j++ ))
@@ -109,7 +110,7 @@ do
     fi
 done
 
-#On met à jour les states des devices pour le prochain jour
+#We update devices state for the next day
 echo "{
   \"totalCount\": \"${#id[@]}\",
   \"result\": [" > ${DATA_DEV_FOLDER}.last_devices_states.json

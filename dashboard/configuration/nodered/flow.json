@@ -292,9 +292,11 @@
         "type": "function",
         "z": "8ef8462d.3e5728",
         "name": "Convert radio in point",
-        "func": "var p = msg.payload;\nvar r = msg.payload.radio;\n\nvar deveui = p.devEUI;\nvar size = r.size;\n//var toa = r.toa;\n//var X_operator = r.X_operator;\n\nvar points = [];\n\n    var point = [{\n        rssi: r.rssi,\n        lsnr: r.loRaSNR,\n        size: p.size,\n        dr: r.dr,\n        redundancy: r.redundancy\n    },\n    {\n        deveui: p.devEUI,\n        deviceName: p.deviceName,\n        gatewayID: r.gatewayID,\n        datarate: r.dr,\n        appid: p.applicationID,\n        frequency: r.frequency/1000000.0,\n        region: \"eu868\",\n        subband: r.subband\n    }];\n\n    points.push(point);\n\nmsg.payload = points;\n\nreturn msg;",
+        "func": "var p = msg.payload;\nvar r = msg.payload.radio;\n\nvar deveui = p.devEUI;\nvar size = r.size;\n//var toa = r.toa;\n//var X_operator = r.X_operator;\n\nvar points = [];\n\n    var point = [{\n        // add time\n        rssi: r.rssi,\n        lsnr: r.loRaSNR,\n        size: p.size,\n        dr: r.dr,\n        redundancy: r.redundancy\n    },\n    {\n        deveui: p.devEUI,\n        deviceName: p.deviceName,\n        gatewayID: r.gatewayID,\n        datarate: r.dr,\n        appid: p.applicationID,\n        frequency: r.frequency/1000000.0,\n        region: \"eu868\",\n        subband: r.subband\n    }];\n\n    points.push(point);\n\nmsg.payload = points;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
         "x": 440,
         "y": 560,
         "wires": [
@@ -499,7 +501,7 @@
         "type": "function",
         "z": "8ef8462d.3e5728",
         "name": "Convert rx in point",
-        "func": "var p = msg.payload;\n\nvar phyPayloadBuffer = p.phyPayloadBuffer;\n\nvar rxInfo = p.rxInfo;\nvar txInfo = p.txInfo;\n\nvar point = [{\n    size: phyPayloadBuffer.length,\n    rssi: rxInfo.rssi,\n    lsnr: rxInfo.loRaSNR,\n    toa: rxInfo.toa\n},\n{\n    mac: rxInfo.gatewayID,\n    frametype: p.frametype,\n    operator: p.operator,\n    frequency: txInfo.frequency,\n    dr: rxInfo.dr,\n    redundancy: rxInfo.redundancy,\n    subband: rxInfo.subband,\n    sf: txInfo.loRaModulationInfo.spreadingFactor,\n    bw: txInfo.loRaModulationInfo.bandwidth\n}];\n\nif (p.devaddr) {\n    point[1].devaddr = p.devaddr;\n    point[1].operator = p.operator;\n    point[1].confirmed = p.confirmed;\n\n    msg.payload = point;\n    return msg;\n    \n} else if (p.deveui) {\n    point[1].deveui = p.deveui;\n    point[1].appeui = p.appeui;\n\n    msg.payload = point;\n    return msg;\n\n} else {\n    return undefined;\n}\n",
+        "func": "var p = msg.payload;\n\nvar phyPayloadBuffer = p.phyPayloadBuffer;\n\nvar rxInfo = p.rxInfo;\nvar txInfo = p.txInfo;\n\nvar point = [{\n    // TODO add time\n    size: phyPayloadBuffer.length,\n    rssi: rxInfo.rssi,\n    lsnr: rxInfo.loRaSNR,\n    toa: rxInfo.toa\n},\n{\n    mac: rxInfo.gatewayID,\n    frametype: p.frametype,\n    operator: p.operator,\n    frequency: txInfo.frequency,\n    dr: rxInfo.dr,\n    redundancy: rxInfo.redundancy,\n    subband: rxInfo.subband,\n    sf: txInfo.loRaModulationInfo.spreadingFactor,\n    bw: txInfo.loRaModulationInfo.bandwidth\n}];\n\nif (p.devaddr) {\n    point[1].devaddr = p.devaddr;\n    point[1].operator = p.operator;\n    point[1].confirmed = p.confirmed;\n\n    msg.payload = point;\n    return msg;\n    \n} else if (p.deveui) {\n    point[1].deveui = p.deveui;\n    point[1].appeui = p.appeui;\n\n    msg.payload = point;\n    return msg;\n\n} else {\n    return undefined;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -718,7 +720,7 @@
         "type": "function",
         "z": "8ef8462d.3e5728",
         "name": "Convert stat in point",
-        "func": "var p = msg.payload;\nvar t = msg.topic;\n\nvar mac = (Buffer.from(p.gatewayID,\"base64\")).toString('hex');\n\nvar point = [{\n    rxPacketsReceived: p.rxPacketsReceived,\n    rxPacketsReceivedOK: p.rxPacketsReceivedOK,\n    txPacketsReceived: p.txPacketsReceived,\n    txPacketsEmitted: p.txPacketsEmitted\n},\n{\n    mac: mac\n}];\n\nvar l = p.location;\nif(l && (l !== null)) {\n    if(l.latitude) point[0].latitude = l.latitude;\n    if(l.longitude) point[0].longitude = l.longitude;\n    if(l.altitude) point[0].altitude = l.altitude;\n    if(l.accuracy) point[0].accuracy = l.accuracy;\n}\n\nmsg.payload = point;\nreturn msg;\n",
+        "func": "var p = msg.payload;\nvar t = msg.topic;\n\nvar mac = (Buffer.from(p.gatewayID,\"base64\")).toString('hex');\n\nvar point = [{\n    // TODO add time\n    rxPacketsReceived: p.rxPacketsReceived,\n    rxPacketsReceivedOK: p.rxPacketsReceivedOK,\n    txPacketsReceived: p.txPacketsReceived,\n    txPacketsEmitted: p.txPacketsEmitted\n},\n{\n    mac: mac\n}];\n\nvar l = p.location;\nif(l && (l !== null)) {\n    if(l.latitude) point[0].latitude = l.latitude;\n    if(l.longitude) point[0].longitude = l.longitude;\n    if(l.altitude) point[0].altitude = l.altitude;\n    if(l.accuracy) point[0].accuracy = l.accuracy;\n}\n\nmsg.payload = point;\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -842,9 +844,11 @@
         "type": "function",
         "z": "8ef8462d.3e5728",
         "name": "Convert status in influxdb point",
-        "func": "var p = msg.payload;\nvar pt =    [\n                {\n                   margin:p.margin,\n                   battery: p.battery,\n                   externalPowerSource: p.externalPowerSource ? 1 : 0,\n                   batteryLevel: p.batteryLevel,\n                   batteryLevelUnavailable: p.batteryLevelUnavailable ? 1 : 0\n                },\n                {\n                    devEUI: p.devEUI,\n                    applicationID: p.applicationID,\n                    deviceName: p.deviceName,\n                    applicationName: p.applicationName\n                }\n            ];\nmsg.payload = pt;\nreturn msg;\n",
+        "func": "var p = msg.payload;\nvar pt =    [\n                {\n                    // TODO add time\n                   margin:p.margin,\n                   battery: p.battery,\n                   externalPowerSource: p.externalPowerSource ? 1 : 0,\n                   batteryLevel: p.batteryLevel,\n                   batteryLevelUnavailable: p.batteryLevelUnavailable ? 1 : 0\n                },\n                {\n                    devEUI: p.devEUI,\n                    applicationID: p.applicationID,\n                    deviceName: p.deviceName,\n                    applicationName: p.applicationName\n                }\n            ];\nmsg.payload = pt;\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
+        "initialize": "",
+        "finalize": "",
         "x": 410,
         "y": 960,
         "wires": [
@@ -1158,7 +1162,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "x": 700,
+        "x": 660,
         "y": 240,
         "wires": [
             [
@@ -1228,6 +1232,8 @@
         "console": false,
         "tostatus": false,
         "complete": "payload",
+        "statusVal": "",
+        "statusType": "auto",
         "x": 1190,
         "y": 280,
         "wires": []
@@ -1370,5 +1376,69 @@
         "x": 1135,
         "y": 360,
         "wires": []
+    },
+    {
+        "id": "926ac0ea.4fcca",
+        "type": "function",
+        "z": "74429ff4.4ff848",
+        "name": "TODO add time",
+        "func": "// process \"timeSinceGPSEpoch\":\"1298122163.657s\"\n// process \"crcStatus\":\"CRC_OK\"\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 830,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8148da84.dc11d",
+        "type": "function",
+        "z": "74429ff4.4ff848",
+        "name": "TODO add location",
+        "func": "// process \"timeSinceGPSEpoch\":\"1298122163.657s\"\n// process \"crcStatus\":\"CRC_OK\"\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 990,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ead4aa55.0969a8",
+        "type": "function",
+        "z": "8ef8462d.3e5728",
+        "name": "TODO add lattitude,longitude",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 550,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "874de035.42a8d8",
+        "type": "function",
+        "z": "176e4c9f.1fe43b",
+        "name": "TODO add distance",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 950,
+        "y": 320,
+        "wires": [
+            []
+        ]
     }
 ]

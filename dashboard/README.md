@@ -15,6 +15,7 @@
 * nodered : TBD
 * grafana : TBD
 * influxdb : TBD
+* thingsboard : TBD
 
 ## Configuration
 

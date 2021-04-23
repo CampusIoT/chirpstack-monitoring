@@ -11,6 +11,7 @@ services:
       service: nodered
     links:
       - influxdb:influxdb
+      - thingsboard:thingsboard
 
   influxdb:
     extends:
@@ -23,3 +24,8 @@ services:
       service: grafana
     links:
       - influxdb:influxdb
+
+  thingsboard:
+    extends:
+      file: thingsboard.yml
+      service: thingsboard

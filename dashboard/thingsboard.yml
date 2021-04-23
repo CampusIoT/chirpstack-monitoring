@@ -1,0 +1,35 @@
+# Copyright (C) UGA GINP  - All Rights Reserved
+# Written by Didier DONSEZ, 2016-2021
+
+# See https://thingsboard.io/docs/user-guide/install/docker/?ubuntuThingsboardQueue=inmemory
+
+# mkdir -p data/thingsboard/logs && sudo chown -R 799:799 data/thingsboard/logs
+# mkdir -p data/thingsboard/data && sudo chown -R 799:799 data/thingsboard/data
+
+# mkdir -p data/thingsboard/logs && sudo chown -R donsez:staff data/thingsboard/logs
+# mkdir -p data/thingsboard/data && sudo chown -R donsez:staff data/thingsboard/data
+
+
+# 8080:9090 - connect local port 8080 to exposed internal HTTP port 9090
+# 1883:1883 - connect local port 1883 to exposed internal MQTT port 1883
+# 5683:5683 - connect local port 5683 to exposed internal COAP port 5683
+
+version: "2"
+
+services:
+
+  thingsboard:
+    restart: always
+    image: "thingsboard/tb"
+#    image: "thingsboard/tb-postgres"
+    ports:
+      - "8080:9090"
+      - "1883:1883"
+      - "5683:5683/udp"
+    environment:
+      TB_QUEUE_TYPE: in-memory
+    volumes:
+      - ./data/thingsboard/data:/data
+      - ./data/thingsboard/logs:/var/log/thingsboard
+    restart: unless-stopped
+    network_mode: bridge

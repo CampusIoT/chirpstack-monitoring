@@ -1,11 +1,13 @@
 #!/bin/bash
 
-# Copyright (C) CampusIoT,  - All Rights Reserved
-# Written by CampusIoT Dev Team, 2016-2021
-
-# ------------------------------------------------
-# Get the detail of a getaway
-# ------------------------------------------------
+# -------------------------------------------------
+# Description:  Get the detail of a gateway 
+# List Command: x
+# Usage:        runned by get_gateways.sh
+# Create by:    CampusIoT Dev Team, 2016-2021 - Copyright (C) CampusIoT,  - All Rights Reserved
+# -------------------------------------------------
+# # Milestone: Version 2021
+# -------------------------------------------------
 
 # Parameters
 if [[ $# -ne 2 ]] ; then
@@ -45,6 +47,9 @@ CONTENT_CSV="Content-Type: text/csv"
 PORT=443
 URL=https://lns.campusiot.imag.fr:$PORT
 
+# DATA REPOSITORY
+DATA_GAT_FOLDER="data/gateways/"
+
 # Operations
 #CURL="curl --verbose"
 CURL="curl -s --insecure"
@@ -58,4 +63,4 @@ HEAD="${CURL} -X HEAD --header \""$ACCEPT_JSON"\""
 
 ${GET} \
   --header "$AUTH" ${URL}'/api/gateways/'${GWID} \
-  > .gateway-${GWID}.json
+  > ${DATA_GAT_FOLDER}.gateway-${GWID}.json

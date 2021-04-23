@@ -9,6 +9,13 @@ sudo apt install jq curl
 
 [See Postfix install](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-postfix-on-ubuntu-20-04)
 
+```bash
+npm install moment #javascript timer lib (generate reports)
+sudo apt-get install -y phantomjs #javascript screenshot html page lib (send reports by emails)
+npm install webshot #come with phantomjs for the screenshot (send reports by emails)
+npm install graceful-fs #come with phantomjs for the screenshot (send reports by emails)
+```
+
 ### MacOS
 ```bash
 brew install jq curl
@@ -49,6 +56,11 @@ open .organizations.html
 open .mails.csv
 ```
 
+## Cleans bins files
+```bash
+./clean.sh
+```
+
 ## Useful utilities
 * https://www.npmjs.com/package/csvtojson
 * https://www.npmjs.com/package/jsontocsv
@@ -68,8 +80,9 @@ jq '[.[] | {"name":.name, "deveui":.deveui, "appkey":.appkey}]'  fulldevices.jso
 ### TODOLIST
 
 * [x] send email to the persons (one or more) responsible of a failed gateway. responsibles are set into the tag "owner_email" into the gateway description on the LNS
-* [ ] add organizationID into the device report (join with .applications.json) https://github.com/stedolan/jq/issues/1090
+* [x] add organizationID into the device report (join with .applications.json) https://github.com/stedolan/jq/issues/1090
 * [x] send reports by email
 * [x] crontab for sending reports by email
-* [ ] convert date to epoch for computing the time ago
-** jq: error (at .gateways.json:0): date "2020-12-21T09:24:02.077751Z" does not match format "%Y-%m-%dT%H:%M:%SZ" (.lastSeenAt | fromdateiso8601)
+* [x] convert date to epoch for computing the time ago
+* [ ] Instead of taking a capture of the whole page html, take a picture of each sparkline graph and
+replace it through the mail. (check documentation file Final_Report_Team18_2021.pdf part "Possible Improvement" for further informations )

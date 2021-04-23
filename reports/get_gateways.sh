@@ -1,11 +1,13 @@
 #!/bin/bash
 
-# Copyright (C) CampusIoT,  - All Rights Reserved
-# Written by CampusIoT Dev Team, 2016-2021
-
-# ------------------------------------------------
-# Get getaways
-# ------------------------------------------------
+# -------------------------------------------------
+# Description:  Get gateways 
+# List Command: x
+# Usage:        runned by generate_reports.sh
+# Create by:    CampusIoT Dev Team, 20162021 - Copyright (C) CampusIoT,  - All Rights Reserved
+# -------------------------------------------------
+# Milestone: Version 2021
+# -------------------------------------------------
 
 # Parameters
 if [[ $# -ne 1 ]] ; then
@@ -44,6 +46,9 @@ CONTENT_CSV="Content-Type: text/csv"
 PORT=443
 URL=https://lns.campusiot.imag.fr:$PORT
 
+# DATA REPOSITORY
+DATA_GAT_FOLDER="data/gateways/"
+
 # Operations
 #CURL="curl --verbose"
 CURL="curl -s --insecure"
@@ -57,30 +62,42 @@ HEAD="${CURL} -X HEAD --header \""$ACCEPT_JSON"\""
 
 ${GET} \
   --header "$AUTH" ${URL}'/api/gateways?limit=1000&offset=0' \
-  > .gateways.json
-
-echo '<html><head><title>CampusIoT LNS :: Gateways</title></head><body style="font-family:verdana;"><h1>CampusIoT LNS :: Gateways</h1>' > .gateways.html
+  > ${DATA_GAT_FOLDER}.gateways.json
 
 TODAY=$(date +"%Y-%m-%d")
-echo '<p>generated at ' >> .gateways.html
-date +"%Y-%m-%d %T %Z" >> .gateways.html
-echo ' - ' >> .gateways.html
-TZ=GMT date +"%Y-%m-%d %T %Z" >> .gateways.html
-echo '</p>' >> .gateways.html
 
-echo '<h2>Active gateways</h2>' >> .gateways.html
-
-jq --raw-output -f gateways_to_html.jq .gateways.json | grep $TODAY >> .gateways.html
-
-echo '<h2>Passive gateways</h2>' >> .gateways.html
-
-jq --raw-output -f gateways_to_html.jq .gateways.json | grep -v $TODAY >> .gateways.html
-
-echo '</body></html>' >> .gateways.html
-
-GATEWAYS=$(jq --raw-output ".result | sort_by(.lastSeenAt, .id) | reverse [] | (.id)" .gateways.json)
+#generates json files of gateways informations and gateways statistics.
+GATEWAYS=$(jq --raw-output ".result | sort_by(.lastSeenAt, .id) | reverse [] | (.id)" ${DATA_GAT_FOLDER}.gateways.json)
+GATEWAYS_LEN=$(jq --raw-output ".totalCount" ${DATA_GAT_FOLDER}.gateways.json)
 for g in $GATEWAYS
 do
-echo "get details for $g"
+echo "get details for gateway $g (basic & stats informations)"
 ./get_gateway.sh $TOKEN $g
+./get_gateway_stats.sh $TOKEN $g $TODAY
 done
+
+echo "generate html (2 copies : one with sparkline and one without sparkline)"
+./generate_gateways_report.sh $GATEWAYS_LEN $GATEWAYS $TODAY
+
+echo "comparing gateways states Passives and Actives of the report with the last report."
+echo -e "\t in green : gateways who was passive became active"
+echo -e "\t in red : gateways who was active became passive"
+./get_id_gateways_change.sh ".gateways.html"
+./get_id_gateways_change.sh ".gateways_without_sparkline.html"
+
+# Installation
+if ! [ -x "$(command -v phantomjs)" ]; then
+  echo 'phantomjs is not installed. Installing phantomjs ...'
+  sudo apt-get install -y phantomjs
+fi
+
+package='graceful-fs'
+if [ `npm list --silent | grep -c $package` -eq 0 ]; then
+    echo 'graceful-fs is not installed. Installing graceful-fs ...'
+    npm install "webshot"
+    npm install $package
+fi
+
+# Generate an image of the page html with sparkline
+echo "Generate an image of the page html with sparkline"
+node generate_sparkline_image.js

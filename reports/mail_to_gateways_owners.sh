@@ -7,11 +7,15 @@
 # Parse getaways and send reports to owners by email
 # ------------------------------------------------
 
+# DATA REPOSITORY
+DATA_GAT_FOLDER="data/gateways/"
+DATA_GENERATED_FOLDER="data/generated_files/"
+
 rm .mails.csv
 GWIDS=$(jq --raw-output ".result | sort_by(.lastSeenAt, .id) | reverse [] | (.id)" .gateways.json)
 for GWID in $GWIDS
 do
-node ./parse_gateway.js .gateway-${GWID}.json >> .mails.csv
+node ./parse_gateway.js ${DATA_GAT_FOLDER}.gateway-${GWID}.json >> ${DATA_GENERATED_FOLDER}.mails.csv
 done
 
 

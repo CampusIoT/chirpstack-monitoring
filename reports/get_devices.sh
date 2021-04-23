@@ -1,11 +1,13 @@
 #!/bin/bash
 
-# Copyright (C) CampusIoT,  - All Rights Reserved
-# Written by CampusIoT Dev Team, 2016-2021
-
-# ------------------------------------------------
-# Get devices
-# ------------------------------------------------
+# -------------------------------------------------
+# Description:  Get devices
+# List Command: x
+# Usage:        runned by generate_reports.sh
+# Create by:    CampusIoT Dev Team, 2016-2021 - Copyright (C) CampusIoT,  - All Rights Reserved
+# -------------------------------------------------
+# Milestone: Version 2021
+# -------------------------------------------------
 
 # Parameters
 if [[ $# -ne 1 ]] ; then
@@ -44,7 +46,13 @@ CONTENT_CSV="Content-Type: text/csv"
 PORT=443
 URL=https://lns.campusiot.imag.fr:$PORT
 
-# Operations
+# DATA REPOSITORY
+DATA_APP_FOLDER="data/applications/"
+DATA_ORG_FOLDER="data/organizations/"
+DATA_DEV_FOLDER="data/devices/"
+DATA_HTML_FOLDER="data/generated_files/"
+devices_html="${DATA_HTML_FOLDER}.devices.html"
+
 # Operations
 #CURL="curl --verbose"
 CURL="curl -s --insecure"
@@ -56,27 +64,51 @@ DELETE="${CURL} -X DELETE --header \""$ACCEPT_JSON"\""
 OPTIONS="${CURL} -X OPTIONS --header \""$ACCEPT_JSON"\""
 HEAD="${CURL} -X HEAD --header \""$ACCEPT_JSON"\""
 
-${GET} \
-  --header "$AUTH" ${URL}'/api/devices?limit=9999&offset=0' \
-  > .devices.json
 
-echo '<html><head><title>CampusIoT LNS :: Devices</title></head><body style="font-family:verdana;"><h1>CampusIoT LNS :: Devices</h1>' > .devices.html
+ids_org=$(jq --raw-output ".result[] | .id" ${DATA_ORG_FOLDER}.organizations.json)
+ids_org_array=($ids_org)
+nb_devices=0
+DID=() #List of Devices' IDs
+OID=() #List of Organisations' IDs linked to the DID (ex OID[0] is the orgID of DID[0])
+for ((i=0; i<${#ids_org_array[@]}; i++))
+do
+  ids_app=$(jq --raw-output ".result[] | .id" ${DATA_APP_FOLDER}.organization${ids_org_array[i]}_applications.json)
+  ids_app_array=($ids_app)
+  for ((j=0; j<${#ids_app_array[@]}; j++))
+  do
+    DID[$nb_devices]=${ids_app_array[$j]}
+    OID[$nb_devices]=${ids_org_array[$i]}
+    nb_devices=$((nb_devices+1))
+    ${GET} \
+      --header "$AUTH" ${URL}'/api/devices?limit=9999&applicationID='${ids_app_array[j]} \
+      > ${DATA_DEV_FOLDER}.application${ids_app_array[j]}_devices.json
+  done
+done
 
-TODAY=$(date +"%Y-%m-%d")
-echo '<p>generated at ' >> .devices.html
-date +"%Y-%m-%d %T %Z" >> .devices.html
-echo ' - ' >> .devices.html
-TZ=GMT date +"%Y-%m-%d %T %Z" >> .devices.html
-echo '</p>' >> .devices.html
+jq -s '.[0].result = [.[].result | add] | .[0]' ${DATA_DEV_FOLDER}.application*.json > ${DATA_DEV_FOLDER}.devices.json
 
-echo '<h2>Active devices</h2>' >> .devices.html
+ids=$(jq --raw-output ".result[] | select(.!=null) | .devEUI" ${DATA_DEV_FOLDER}.devices.json)
+id=($ids)
 
-jq --raw-output -f devices_to_html.jq .devices.json | grep $TODAY >> .devices.html
-
-echo '<h2>Passive devices</h2>' >> .devices.html
-
-jq --raw-output -f devices_to_html.jq .devices.json | grep -v $TODAY >> .devices.html
-
-echo '</body></html>' >> .devices.html
+tmp=$(grep "totalCount" < ${DATA_DEV_FOLDER}.devices.json)
+replacement=${tmp/"1"/"${#id[@]}"}
+sed -i "/"totalCount"/c $replacement" ${DATA_DEV_FOLDER}.devices.json
 
 
+#${GET} \
+#  --header "$AUTH" ${URL}'/api/devices?limit=9999&offset=0' \
+#  > .devices.json
+
+echo "generate devices.html"
+./generate_devices_report.sh $TODAY
+
+echo "comparing devices states Passives and Actives of the report with the last report."
+echo -e "\t in green : devices who was passive became active"
+echo -e "\t in red : devices who was active became passive"
+./get_id_devices_change.sh
+
+
+for ((i=0; i<${#DID[@]}; i++))
+do
+  ./update_url_orga_id.sh ${DID[$i]} ${OID[$i]}
+done

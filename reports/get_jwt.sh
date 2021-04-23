@@ -15,7 +15,6 @@ fi
 
 USERNAME=$1
 PASSWORD=$2
-# TODO get AUTH_JSON from the $(echo .credentials.json)
 AUTH_JSON="{ \"username\": \"${USERNAME}\", \"password\": \"${PASSWORD}\" }"
 
 # Installation
@@ -43,10 +42,12 @@ CONTENT_CSV="Content-Type: text/csv"
 PORT=443
 URL=https://lns.campusiot.imag.fr:$PORT
 
+# DATA REPOSITORY
+DATA_CONFIG_FOLDER="data/configuration/"
+
 # Doc
 URL_SWAGGER=${URL}/swagger/api.swagger.json
 
-# Operations
 # Operations
 #CURL="curl --verbose"
 CURL="curl -s --insecure"
@@ -67,11 +68,13 @@ HEAD="${CURL} -X HEAD --header \""$ACCEPT_JSON"\""
 # Authenfication operations
 # -----------------------------------
 
+USERNAME_LOWERCASE=${USERNAME,,} #lowercasing the name of json token file for a clean cleaning git ignore.
 
 # Get the Bearer token for the user
-rm $USERNAME.token.json
-${POST}  --header "$CONTENT_JSON" -d "$AUTH_JSON" ${URL}/api/internal/login > $USERNAME.token.json
-TOKEN=$(jq -r '.jwt' $USERNAME.token.json)
+rm -f ${DATA_CONFIG_FOLDER}*.token.json #delete old tokens
+
+${POST}  --header "$CONTENT_JSON" -d "$AUTH_JSON" ${URL}/api/internal/login > ${DATA_CONFIG_FOLDER}$USERNAME_LOWERCASE.token.json
+TOKEN=$(jq -r '.jwt' ${DATA_CONFIG_FOLDER}$USERNAME_LOWERCASE.token.json)
 AUTH="Grpc-Metadata-Authorization: Bearer $TOKEN"
 echo "$TOKEN"
 

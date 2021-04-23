@@ -4,26 +4,25 @@
 # Written by CampusIoT Dev Team, 2016-2021
 
 # -------------------------------------------------
-# Description:  Get applications 
+# Description:  Get the stats of a gateway 
 # List Command: x
-# Usage:        runned by get_applications.sh
+# Usage:        runned by get_gateways.sh
 # Create by:    CampusIoT Dev Team, 2021 - Copyright (C) CampusIoT,  - All Rights Reserved
 # -------------------------------------------------
 # Milestone: Version 2021
 # -------------------------------------------------
 
 # Parameters
-if [[ $# -ne 2 ]] ; then
-    echo "Usage: $0 JWT OID"
+if [[ $# -ne 3 ]] ; then
+    echo "Usage: $0 JWT GWID TODAY"
     exit 1
 fi
 
 TOKEN="$1"
-OID="$2"
+GWID="$2"
+TODAY="$3"
 
 AUTH="Grpc-Metadata-Authorization: Bearer $TOKEN"
-#sudo npm install -g jwt-cli
-#jwt $TOKEN
 
 # Installation
 if ! [ -x "$(command -v jq)" ]; then
@@ -51,9 +50,8 @@ PORT=443
 URL=https://lns.campusiot.imag.fr:$PORT
 
 # DATA REPOSITORY
-DATA_APP_FOLDER="data/applications/"
+DATA_GAT_FOLDER="data/gateways/"
 
-# Operations
 # Operations
 #CURL="curl --verbose"
 CURL="curl -s --insecure"
@@ -65,8 +63,13 @@ DELETE="${CURL} -X DELETE --header \""$ACCEPT_JSON"\""
 OPTIONS="${CURL} -X OPTIONS --header \""$ACCEPT_JSON"\""
 HEAD="${CURL} -X HEAD --header \""$ACCEPT_JSON"\""
 
-${GET} \
-  --header "$AUTH" ${URL}'/api/applications?limit=9999&organizationID='${OID} \
-  > ${DATA_APP_FOLDER}.organization${OID}_applications.json
+PAST_MONTH=$(date -d "-1 month" +%Y-%m-%d)
+INTERVAL="day"
 
-# jq '.result[] | ( .id + ": " + .name + " - " + .organizationID + " - " + .description)' .applications.json
+${GET} \
+  --header "$AUTH" ${URL}'/api/gateways/'${GWID}'/stats?interval='${INTERVAL}'&startTimestamp='${PAST_MONTH}'T00:00:00Z&endTimestamp='${TODAY}'T00:00:00Z' \
+  > ${DATA_GAT_FOLDER}.gateway-${GWID}_stats.json
+
+#  'https://lns.campusiot.imag.fr/api/gateways/7276ff0039030724/stats?interval=day&startTimestamp=2021-02-09T00%3A00%3A00Z&endTimestamp=2021-03-09T00%3A00%3A00Z'
+ 
+#   https://lns.campusiot.imag.fr:443'/api/gateways/'7276ff0039030871'/stats?interval='day'&startTimestamp=$'2021-02-09'T00:00:00Z&endTimestamp='2021-03-09'T00:00:00Z'

@@ -1,7 +1,9 @@
 node_modules/
 admin.token.json
+*.token.json
 .*.json
 .*.html
 .DS_Store
 *.bak
 *.old
+data/images/*

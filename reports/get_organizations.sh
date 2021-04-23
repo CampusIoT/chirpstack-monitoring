@@ -3,9 +3,14 @@
 # Copyright (C) CampusIoT,  - All Rights Reserved
 # Written by CampusIoT Dev Team, 2016-2021
 
-# ------------------------------------------------
-# Get organizations
-# ------------------------------------------------
+# -------------------------------------------------
+# Description:  Get organizations 
+# List Command: x
+# Usage:        runned by generate_reports.sh
+# Create by:    CampusIoT Dev Team, 2021 - Copyright (C) CampusIoT,  - All Rights Reserved
+# -------------------------------------------------
+# Milestone: Version 2021
+# -------------------------------------------------
 
 # Parameters
 if [[ $# -ne 1 ]] ; then
@@ -44,6 +49,9 @@ CONTENT_CSV="Content-Type: text/csv"
 PORT=443
 URL=https://lns.campusiot.imag.fr:$PORT
 
+# DATA REPOSITORY
+DATA_ORG_FOLDER="data/organizations/"
+
 # Operations
 #CURL="curl --verbose"
 CURL="curl --insecure"
@@ -57,6 +65,15 @@ HEAD="${CURL} -X HEAD --header \""$ACCEPT_JSON"\""
 
 ${GET} \
   --header "$AUTH" ${URL}'/api/organizations?limit=1000&offset=0' \
-  > .organizations.json
+  > ${DATA_ORG_FOLDER}.organizations.json
 
-jq '.result[] | ( .id + ": " + .name + " - " + .displayName)' .organizations.json
+
+jq '.result[] | ( .id + ": " + .name + " - " + .displayName)' ${DATA_ORG_FOLDER}.organizations.json
+
+ids=$(jq --raw-output ".result[] | .id" ${DATA_ORG_FOLDER}.organizations.json)
+ids_array=($ids)
+
+for (( i=0; i<${#ids_array[@]}; i++ ))
+do
+  ./get_applications.sh $TOKEN "${ids_array[i]}"
+done
